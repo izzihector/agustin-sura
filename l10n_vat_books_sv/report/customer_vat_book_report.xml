@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="paperformat_customer_vat_book_report" model="report.paperformat">
+	      <field name="name">Libro de ventas con emisión de facturas</field>
+	      <field name="default" eval="True"/>
+	      <field name="format">Letter</field>
+	      <field name="orientation">Portrait</field>
+	      <field name="margin_top">10</field>
+	      <field name="margin_bottom">10</field>
+	      <field name="margin_left">10</field>
+	      <field name="margin_right">10</field>
+	      <field name="header_line" eval="False"/>
+	      <field name="header_spacing">0</field>
+	      <field name="dpi">100</field>
+	</record>
+    <template id="customer_vat_book_report_main">
+        <t t-call="web.internal_layout">
+            <div class="header">
+
+            </div>
+            <div class="page">
+                <style>
+                    *{
+                        margin: 0px;
+                        padding: 0px;
+                    }
+
+                    /*Encabezado*/
+                    .header--title{
+                        text-align: center;
+                    }
+                    .sales--parent{
+                        font-weight: bold;
+                    }
+                    .sales--child{
+                        text-align: right;
+                    }
+
+                    .thead{
+                        text-align: center;
+                    }
+
+                    .table--day{
+                        text-align: center;
+                    }
+
+                    .money{
+                      text-align: right;
+                    }
+
+                    .table--number{
+                      text-align: center;
+                    }
+                    .abstract{
+                      text-align: right;
+                      padding-right: 10px;
+                    }
+                    .result{
+                      text-align: right;
+                    }
+                </style>
+                <t t-call="l10n_vat_books_sv.grid_system"/>
+                <div class="header--title"><span t-esc="company.partner_id.name.upper()"/></div>
+                <div>LIBRO DE VENTAS CON EMISIÓN DE FACTURAS</div>
+                <div>REGISTRO FISCAL: <span t-esc="company.partner_id.nrc"/></div>
+                <div>NIT: <span t-esc="company.partner_id.nit"/></div>
+                <div>
+                    <span>MES: <span t-esc="month[int(date_from[5:7]) - 1]"/></span>
+                    <span>AÑO: <span t-esc="date_from[0:4]"/></span>
+                </div>
+                <div class="container">
+                    <div class="row thead">
+                        <div class="col-1"></div>
+                        <div class="col-1"></div>
+                        <div class="col-1"></div>
+                        <div class="col-4 sales--parent">------Ventas------</div>
+                        <div class="col-1"></div>
+                        <div class="col-1"></div>
+                    </div>
+                    <div class="row thead">
+                        <div class="col-1">Día</div>
+                        <div class="col-1">Del No.</div>
+                        <div class="col-1">Al No.</div>
+                        <div class="col-2 sales--parent">Exentas</div>
+                        <div class="col-2 sales--parent">Gravadas</div>
+                        <div class="col-1">IVA</div>
+                        <div class="col-1">Ventas</div>
+                    </div>
+                    <div class="row thead">
+                        <div class="col-1"></div>
+                        <div class="col-1"></div>
+                        <div class="col-1"></div>
+                        <div class="col-1 sales--child">Locales</div>
+                        <div class="col-1 sales--child">Exportación</div>
+                        <div class="col-1 sales--child">Locales</div>
+                        <div class="col-1 sales--child">Exportación</div>
+                        <div class="col-1">Ret.</div>
+                        <div class="col-1">Totales</div>
+                    </div>
+                    <t t-foreach="days" t-as="day">
+                        <div class="row">
+                            <div class="col-1 table--day"><span t-esc="int(day[8:10])"/></div>
+                            <div class="col-1 table--number"><span t-esc="vat_book_lines[day]['from'][3:].zfill(8)"/></div>
+                            <div class="col-1 table--number"><span t-esc="vat_book_lines[day]['to'][3:].zfill(8)"/></div>
+                            <div class="col-1"></div>
+                            <div class="col-1"></div>
+                            <div class="col-1 money">
+                              <span t-esc="'{:.2f}'.format(round(vat_book_lines[day]['locales'], 2))"/>
+                            </div>
+                            <div class="col-1"></div>
+                            <div class="col-1 money">
+                              <span t-esc="'{:.2f}'.format(round(vat_book_lines[day]['iva_ret'], 2))"/>
+                            </div>
+                            <div class="col-1 money">
+                              <span t-esc="'{:.2f}'.format(round(vat_book_lines[day]['total'], 2))"/>
+                            </div>
+                        </div>
+                        <t t-foreach="refund_invoice_ids" t-as="invoice">
+                          <t t-if="invoice['date_invoice'] == day">
+                            <div class="row">
+                              <div class="col-1 table--day"><span t-esc="int(day[8:10])"/></div>
+                              <div class="col-1 table--number"><span t-esc="invoice['refund_invoice_id'][1][3:].strip().zfill(8)"/></div>
+                              <div class="col-1 table--number"><span t-esc="invoice['refund_invoice_id'][1][3:].strip().zfill(8)"/></div>
+                              <div class="col-2">DOCUMENTO ANULADO</div>
+                              <div class="col-1 money"></div>
+                              <div class="col-1"></div>
+                              <div class="col-1 money"></div>
+                              <div class="col-1 money"></div>
+                            </div>
+                          </t>
+                        </t>
+                    </t>
+                    <t t-foreach="refund_ids" t-as="id">
+                      <div class="row">
+                          <div class="col-1 table--day"><span t-esc="'{}/{}/{}'.format(vat_book_lines_anulation[id]['day'][8:10], vat_book_lines_anulation[id]['day'][5:7], vat_book_lines_anulation[id]['day'][0:4])"/></div>
+                          <div class="col-1 table--number"><span t-esc="vat_book_lines_anulation[id]['from'][3:].strip().zfill(8)"/></div>
+                          <div class="col-1 table--number"><span t-esc="vat_book_lines_anulation[id]['to'][3:].strip().zfill(8)"/></div>
+                          <div class="col-2">DOCUMENTO ANULADO</div>
+                          <div class="col-1 money">
+                            <span t-esc="'{:.2f}'.format(round(vat_book_lines_anulation[id]['locales'], 2))"/>
+                          </div>
+                          <div class="col-1"></div>
+                          <div class="col-1 money">
+                            <span t-esc="'{:.2f}'.format(round(vat_book_lines_anulation[id]['iva_ret'], 2))"/>
+                          </div>
+                          <div class="col-1 money">
+                            <span t-esc="'{:.2f}'.format(round(vat_book_lines_anulation[id]['total'], 2))"/>
+                          </div>
+                        </div>
+                    </t>
+                    <div class="row">
+                        <div class="col-1 table--day">Total</div>
+                        <div class="col-1 table--number"></div>
+                        <div class="col-1 table--number"></div>
+                        <div class="col-1"></div>
+                        <div class="col-1"></div>
+                        <div class="col-1 money">
+                          <span t-esc="locales"/>
+                        </div>
+                        <div class="col-1"></div>
+                        <div class="col-1 money">
+                          <span t-esc="iva_ret"/>
+                        </div>
+                        <div class="col-1 money">
+                          <span t-esc="total"/>
+                        </div>
+                    </div>
+                    <br/>
+                    <br/>
+                    <div class="row">
+                      <div class="col-7 abstract">
+                        CALCULO DEL DEBITO FISCAL
+                      </div>
+                      <div class="col-2 result">
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-7 abstract">
+                        VENTAS GRAVADAS
+                      </div>
+                      <div class="col-2 result">
+                      <span style="padding-right: 10px;" t-esc="locales"/>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-7 abstract">
+                        EXPORTACIONES
+                      </div>
+                      <div class="col-2 result">
+                        <span style="padding-right: 10px;" t-esc="exportaciones"/>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-7 abstract">
+                        VENTAS NETAS GRAVADAS
+                      </div>
+                      <div class="col-2 result">
+                        <span style="padding-right: 10px;" t-esc="gravadas"/>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-7 abstract">
+                        13% DE IVA
+                      </div>
+                      <div class="col-2 result">
+                        <span style="padding-right: 10px;" t-esc="iva"/>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-7 abstract">
+                        TOTAL VENTAS GRAVADAS
+                      </div>
+                      <div class="col-2 result">
+                        <span style="padding-right: 10px;" t-esc="locales"/>
+                      </div>
+                    </div>
+                </div>
+                <br/>
+                <br/>
+                <br/>
+                <t t-call="l10n_vat_books_sv.accountant_sign"/>
+            </div>
+            <div class="footer">
+            
+            </div>
+        </t>
+    </template>
+    <report
+		id="customer_vat_book_report"
+		model="l10n_vat_books_sv.wizard"
+		string="Libro de ventas con emisión de facturas"
+		report_type="qweb-pdf"
+		name="l10n_vat_books_sv.customer_vat_book_report_main"
+		file="l10n_vat_books_sv.customer_vat_book_report_main"
+		attachment="('libro_de_ventas_con_facturas.pdf')"
+		print_report_name="('libro_de_ventas_con_facturas.pdf')"
+		paperformat="paperformat_customer_vat_book_report"
+	/>
+</odoo>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="inherited_report_financial">
+            <field name="name">report_financial.form.view.inherited</field>
+            <field name="model">account.financial.report</field>
+            <field name="inherit_id" ref="account.view_account_financial_report_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='type']" position="after">
+                    <field  name="header_type"/>
+                </xpath>
+            </field>                               
+        </record>
+    </data>
+</odoo>

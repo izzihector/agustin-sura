@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="paperformat_vendor_vat_book_report" model="report.paperformat">
+	      <field name="name">Libro de compras</field>
+	      <field name="default" eval="True"/>
+	      <field name="format">Letter</field>
+	      <field name="orientation">Landscape</field>
+	      <field name="margin_top">20</field>
+	      <field name="margin_bottom">10</field>
+	      <field name="margin_left">10</field>
+	      <field name="margin_right">10</field>
+	      <field name="header_line" eval="False"/>
+	      <field name="header_spacing">0</field>
+	      <field name="dpi">100</field>
+	</record>
+    <template id="vendor_vat_book_report_main">
+        <t t-call="web.internal_layout">
+            <div class="header">
+
+            </div>
+            <div class="page">
+                <style>
+                    *{
+                        margin: 0px;
+                        padding: 0px;
+                    }
+
+                    /*Encabezado*/
+                    .header--title{
+                        text-align: center;
+                        font-weight: bold;
+                    }
+                    .nit{
+                      text-align: left;
+                    }
+                    .registro{
+                      text-align: right;
+                    }
+                    .sales--parent{
+                        font-weight: bold;
+                    }
+                    .sales--child{
+                        text-align: right;
+                    }
+
+                    /* Sistema de grillas*/
+                    .container{
+                        width: 100%;
+                    }
+
+                    #table{
+                      table-layout: fixed;
+                      width: 100%;
+                    }
+
+                    td{
+                      text-align: center;
+                    }
+
+
+                    /* fin Sistema de grillas */
+
+                    .thead{
+                        text-align: center;
+                    }
+
+                    .partner--name{
+                      text-align: left;
+                    }
+
+                    .table--day{
+                        text-align: center;
+                    }
+
+                    .money{
+                      text-align: right;
+                    }
+
+                    .table--number{
+                      text-align: center;
+                    }
+                    tr.header-top td{
+                      border-top: 1px solid black;
+                    }
+                    tr.header-down td{
+                      border-bottom: 1px solid black;
+                    }
+                    tr.footer td{
+                      border-top: 1px solid black;
+                    }
+                </style>
+                <div class="header--title"><span t-esc="company.partner_id.name.upper()"/></div>
+                <div class="header--title">LIBRO DE COMPRAS</div>
+                <div class="header--title">EXPRESADO EN DOLARES DE LOS ESTADOS UNIDOS DE AMERICA ($)</div>
+                
+                <div class="container">
+                  <table id="table">
+                    <tr>
+                      <td colspan="4" class="nit"><span>NIT: <span t-esc="company.partner_id.nit"/></span></td>
+                      <td colspan="4">
+                        <span class="periodo">
+                          <span t-esc="month[int(date_from[5:7]) - 1]"/> DE <span t-esc="date_from[0:4]"/>
+                        </span>
+                      </td>
+                      <td colspan="4" class="registro"><span>NO. REGISTRO CONTRIB.: <span t-esc="company.partner_id.nrc"/></span></td>
+                    </tr>
+                    <tr class="header-top">
+                      <td style="width: 3em;"></td>
+                      <td>No. de</td>
+                      <td>Comprob. de</td>
+                      <td colspan="3">Nombre</td>
+                      <td>No. de</td>
+                      <td colspan="2">Compras gravadas</td>
+                      <td>IVA</td>
+                      <td>IVA</td>
+                      <td></td>
+                    </tr>
+                    <tr class="header-down">
+                      <td style="width: 3em;">Día</td>
+                      <td>Comprob.</td>
+                      <td>Retención</td>
+                      <td colspan="3">del proveedor</td>
+                      <td>Registro</td>
+                      <td>Exentas</td>
+                      <td>Gravadas</td>
+                      <td>(Debito Fiscal)</td>
+                      <td>Retenido</td>
+                      <td>Total</td>
+                    </tr>
+                    <t t-foreach="ids" t-as="id">
+                      <tr>
+                        <td><span t-esc="int(vat_book_lines[id]['day'])"/></td>
+                        <td><span t-esc="vat_book_lines[id]['number'].split('/')[-1]"/></td>
+                        <td></td>
+                        <td class="partner--name" colspan="3">
+                          <span t-esc="vat_book_lines[id]['partner_name']"/>
+                        </td>
+                        <td><span t-esc="vat_book_lines[id]['partner_nrc']"/></td>
+                        <td></td>
+                        <td class="money">
+                          <span t-esc="'{:.2f}'.format(vat_book_lines[id]['gravadas'])"/>
+                        </td>
+                        <td class="money">
+                          <span t-esc="'{:.2f}'.format(vat_book_lines[id]['iva'])"/>
+                        </td>
+                        <td class="money">
+                          <span t-esc="'{:.2f}'.format(vat_book_lines[id]['iva_ret'])"/>
+                        </td>
+                        <td class="money">
+                          <span t-esc="'{:.2f}'.format(vat_book_lines[id]['total'])"/>
+                        </td>
+                      </tr>
+                    </t>
+                    <tr class="footer">
+                      <td colspan="3"></td>
+                      <td class="partner--name" colspan="3">Total</td>
+                      <td colspan="2"></td>
+                      <td class="money">
+                        <span t-esc="gravadas"/>
+                      </td>
+                      <td class="money">
+                        <span t-esc="iva"/>
+                      </td>
+                      <td class="money">
+                         <span t-esc="iva_ret"/>
+                       </td>
+                       <td class="money">
+                         <span t-esc="total"/>
+                       </td>
+                    </tr>
+                  </table>
+                </div>
+                <br/>
+                <br/>
+                <br/>
+                <t t-call="l10n_vat_books_sv.accountant_sign"/>
+            </div>
+            <div class="footer">
+            </div>
+        </t>
+    </template>
+    <report
+  		id="vendor_vat_book_report"
+  		model="l10n_vat_books_sv.wizard"
+  		string="Libro de compras"
+  		report_type="qweb-pdf"
+  		name="l10n_vat_books_sv.vendor_vat_book_report_main"
+  		file="l10n_vat_books_sv.vendor_vat_book_report_main"
+  		attachment="('libro_de_compras.pdf')"
+  		print_report_name="('libro_de_compras.pdf')"
+  		paperformat="paperformat_vendor_vat_book_report"
+	    />
+</odoo>

@@ -1,0 +1,25 @@
+<odoo>
+    <record id="account_invoice_wizard_view" model="ir.ui.view">
+        <field name="name">Account Invoice Wizard</field>
+        <field name="model">account.invoice.line</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="product_id"/>
+                <field name="quantity"/>
+                <field name="price_subtotal"/>
+            </tree>
+        </field>
+    </record>
+    <act_window id="account_invoice_wizard"
+        name="Suma de cajas y libras"
+        src_model="account.invoice.line"
+        res_model="account.invoice.line"
+        view_mode="tree"
+        target="new"
+        domain="[('invoice_id','=',active_id)]"
+        context="{'group_by':'product_id'}"
+        limit="80"
+        multi="True"
+        view_id="account_invoice_wizard_view"
+    />
+</odoo>

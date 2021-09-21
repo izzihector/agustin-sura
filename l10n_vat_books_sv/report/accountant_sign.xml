@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <template id="accountant_sign">
+            <style>
+                .sign{
+                      width: 100%;
+                      text-align: center;
+                }
+            </style>
+            <div class="sign">
+                F.___________________________________
+            </div>
+            <br/>
+            <div class="sign">
+                Lic. <span t-esc="accountant"/>
+            </div>
+            <div class="sign">
+                Contador General
+            </div>
+        </template>
+    </data>
+</odoo>

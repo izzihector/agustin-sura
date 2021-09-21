@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="paperformat_sale_commission_report" model="report.paperformat">
+	      <field name="name">Reporte de comisiones</field>
+	      <field name="default" eval="True"/>
+	      <field name="format">Letter</field>
+	      <field name="orientation">Portrait</field>
+	      <field name="margin_top">20</field>
+	      <field name="margin_bottom">10</field>
+	      <field name="margin_left">10</field>
+	      <field name="margin_right">10</field>
+	      <field name="header_line" eval="False"/>
+	      <field name="header_spacing">0</field>
+	      <field name="dpi">100</field>
+	</record>
+    <template id="sale_commission_report_main">
+        <t t-call="web.internal_layout">
+            <div class="page">
+                <style>
+                </style>
+                <div>
+					<h1>Reporte de comisiones por vendedor</h1>
+					<p>Del: <span t-esc="date_from"/></p>
+					<p>Al: <span t-esc="date_to"/></p>
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th>Vendedor</th>
+								<th class="text-right">Monto de comisión</th>
+							</tr>
+						</thead>
+						<tbody>
+							<t t-foreach="sale_commissions" t-as="commission">
+								<tr>
+									<td><span t-esc="commission['name']"/></td>
+									<td class="text-right">$<span t-esc="'{:.2f}'.format(commission['amount'])"/></td>
+								</tr>
+							</t>
+							<tr>
+								<th>Total</th>
+								<th class="text-right">$<span t-esc="'{:.2f}'.format(commission_total)"/></th>
+							</tr>
+						</tbody>
+					</table>
+                </div>
+            </div>
+        </t>
+    </template>
+    <report
+  		id="sale_commision_report"
+  		model="sale.commission.report.wizard"
+  		string="Reporte de comisiones"
+  		report_type="qweb-pdf"
+  		name="sales_commissions.sale_commission_report_main"
+  		file="sales_commissions.sale_commission_report_main"
+  		attachment="('reporte_de_comisiones.pdf')"
+  		print_report_name="('reporte_de_comisiones.pdf')"
+  		paperformat="paperformat_sale_commission_report"
+	    />
+</odoo>

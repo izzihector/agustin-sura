@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="download_files_view" model="ir.ui.view">
+        <field name="name">Download files</field>
+        <field name="model">accounting_chart_to_xml.download_files</field>
+        <field name="arch" type="xml">
+            <form string="File download">
+                <label string="The files has been successfully generated." />
+                <group>
+                    <group>
+                        <label string="Plan de cuentas.xml"/>
+                        <field name="account_chart" string="Plan de cuentas" filename="l10n_sv_coa_chart_data.xml"/>
+                    </group>
+                    <group>
+                        <label string="Grupo de cuentas.xml"/>
+                        <field name="account_group" string="Grupos de cuentas" filename="l10n_sv_account_group_data.xml"/>
+                    </group>
+                </group>
+                <footer>
+                    <button special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

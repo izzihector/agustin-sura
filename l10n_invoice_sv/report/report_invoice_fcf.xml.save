@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<template id="report_invoice_fcf">
+			<t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
+			<div class="header">
+
+			</div>
+			<div class="page">
+				<p>Cliente: <span t-esc="o.partner_id.name"/></p>
+        <p>Número: <span t-esc="o.number"/></p>
+        <p>Fecha: <span t-esc="o.date_invoice"/></p>
+        <br/>
+				<!-- Agrupando por producto -->
+				<table style="width:100%">
+              <t t-set="product_ids" t-value="list(set([line.product_id.id for line in o.invoice_line_ids]))"></t>
+              <t t-foreach="product_ids" t-as="product_id">
+
+                <t t-set="num_de_cajas" t-value="0"></t>
+                <t t-set="product_qty" t-value="0.00"></t>
+                <t t-set="product_name" t-value="''"></t>
+                <t t-set="product_qty" t-value="0.00"></t>
+                <t t-set="price_unit" t-value="0.00"></t>
+                <t t-set="line_total" t-value="0.00"></t>
+
+                <t t-foreach="o.invoice_line_ids" t-as="line">
+                  <t t-if="line.product_id.id == product_id">
+                    <t t-set="product_qty" t-value="product_qty + line.quantity"></t>
+                    <t t-set="num_de_cajas" t-value="num_de_cajas + 1"></t>
+                    <t t-set="price_unit" t-value="price_unit + line.price_unit"></t>
+                    <t t-set="line_total" t-value="line_total + line.price_total"></t>
+                    <t t-if="num_de_cajas == 1">
+                      <t t-set="product_name" t-value="line.product_id.name"></t>
+                    </t>
+                  </t>
+                </t>
+                <t t-set="price_unit" t-value="price_unit / num_de_cajas"></t>
+                <tr>
+                  <td><span t-esc="product_qty"/></td>
+                  <td><span t-esc="product_name + ' {} CAJA(S)'.format(num_de_cajas)"/></td>
+                  <td><span t-esc="price_unit"/></td>
+                  <td><span t-esc="line_total"/></td>
+                </tr>
+              </t>
+				</table>
+        <br/>
+        <p>Total: <span t-esc="'$ {total:7.2f}'.format(total=o.amount_total)"/></p>
+			</div>
+			<div class="footer">
+				
+			</div>
+		</template>
+	</data>
+</odoo>

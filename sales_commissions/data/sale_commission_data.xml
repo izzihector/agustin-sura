@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="sale_commission_0_5_percent" model="sale.commission">
+            <field name="name">0.5 %</field>
+            <field name="amount" eval="0.005"/>
+        </record>
+        <record id="sale_commission_1_percent" model="sale.commission">
+            <field name="name">1 %</field>
+            <field name="amount" eval="0.01"/>
+        </record>
+        <record id="sale_commission_2_percent" model="sale.commission">
+            <field name="name">2 %</field>
+            <field name="amount" eval="0.02"/>
+        </record>
+        <record id="sale_commission_3_percent" model="sale.commission">
+            <field name="name">3 %</field>
+            <field name="amount" eval="0.03"/>
+        </record>
+        <record id="sale_commission_4_percent" model="sale.commission">
+            <field name="name">4 %</field>
+            <field name="amount" eval="0.04"/>
+        </record>
+        <record id="sale_commission_5_percent" model="sale.commission">
+            <field name="name">5 %</field>
+            <field name="amount" eval="0.05"/>
+        </record>
+        <record id="sale_commission_6_percent" model="sale.commission">
+            <field name="name">6 %</field>
+            <field name="amount" eval="0.06"/>
+        </record>
+        <record id="sale_commission_7_percent" model="sale.commission">
+            <field name="name">7 %</field>
+            <field name="amount" eval="0.07"/>
+        </record>
+        <record id="sale_commission_8_percent" model="sale.commission">
+            <field name="name">8 %</field>
+            <field name="amount" eval="0.08"/>
+        </record>
+        <record id="sale_commission_9_percent" model="sale.commission">
+            <field name="name">9 %</field>
+            <field name="amount" eval="0.09"/>
+        </record>
+        <record id="sale_commission_10_percent" model="sale.commission">
+            <field name="name">10 %</field>
+            <field name="amount" eval="0.1"/>
+        </record>
+    </data>
+</odoo>

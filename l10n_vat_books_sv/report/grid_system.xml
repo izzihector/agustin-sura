@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <template id="grid_system">
+            <style>
+                /* Sistema de grillas*/
+                .container{
+                    width: 100%;
+                }
+                .row{
+                    display: -webkit-box; /* wkhtmltopdf uses this one */
+                    -webkit-box-pack: center; /* wkhtmltopdf uses this one */
+                }
+
+                .col-1{
+                    width: 11.1111111111%;
+                }
+
+                .col-2{
+                    width: 22.2222222222%;
+                }
+
+                .col-3{
+                    width: 33.3333333333%;
+                }
+
+                .col-4{
+                    width: 44.444444444444%;
+                }
+
+                .col-5{
+                    width: 55.5555555555%;
+                }
+
+                .col-6{
+                    width: 66.6666666666%;
+                }
+
+                .col-7{
+                    width: 77.7777777777%;
+                }
+
+                .col-8{
+                    width: 88.8888888888%;
+                }
+
+                .col-9{
+                    width: 100%;
+                }
+
+                /* fin Sistema de grillas */
+            </style>
+        </template>
+    </data>
+</odoo>
+        

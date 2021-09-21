@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <act_window id="action_vat_books_wizard"
+            name="Formulario de Libros de IVA"
+            src_model="l10n_vat_books_sv.wizard"
+            res_model="l10n_vat_books_sv.wizard"
+            view_mode="form"
+            target="new"
+            multi="True"
+            />
+        <menuitem
+            id="menu_libros_de_iva"
+            groups="account.group_account_user,account.group_account_manager,account.group_account_invoice"
+            name="Libros de IVA"
+            parent="account.menu_finance_reports"
+            sequence="10"
+            action="action_vat_books_wizard"
+            />
+    </data>
+</odoo>

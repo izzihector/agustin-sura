@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<template id="report_invoice_odp">
+			<t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
+      <div class="header">
+      </div>
+      <div class="page" style="0px solid black;">
+        <style type="text/css">
+          .invoiceLine{
+            /*font-size: 12px;
+            font-weight: 100;*/
+          }
+          #amountTotal{
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+          }
+          #invoice--lines{
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+          }
+          .invoiceLine--product{
+            padding-left: 7px;
+          }
+          #encabezado{
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+          }
+          .write{
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+          }
+        </style>
+        <table id="encabezado">
+          <tr class="text-center">
+            <td>
+              <h3>
+              DISTRIBUIDORA EL MILAGRO S.A DE C.V
+              </h3>
+            </td>
+          </tr>
+          <tr class="text-center">
+            <td>6a. CALLE PTE No. 1318</td>
+          </tr>
+          <tr class="text-center">
+            <td>Bo. EL CENTRO NVA. CONCEPCIÓN CHALATENANGO</td>
+          </tr>
+          <tr class="text-center">
+            <td>TEL.: 2335-7029</td>
+          </tr>
+          <tr class="text-center">
+            <td>NOTA DE ENVIO</td>
+          </tr>
+        </table>
+        <p>
+          <span id="invoice--date" class="field" t-esc="o.date_invoice"/>
+        </p>
+        <p>
+          <span id="partner--name" class="field" t-esc="o.partner_id.name"/>
+        </p>
+        <p>
+          <span id="partner--address" class="field" t-esc="o.partner_id.street"/>
+        </p>
+        <table id="invoice--lines">
+              <tr>
+                <td class="text-center" style="width: 10%"/>
+                <td class="text-center" style="width: 55%"/>
+                <td class="text-center" style="width: 20%"/>
+                <td class="text-left" style="width: 25%"/>
+              </tr>
+              <t t-foreach="o.invoice_line_ids" t-as="line">
+                <tr>
+                  <td class="text-right">
+                    <span class="invoiceLine invoiceLine--qty" t-esc="'{qty:.2f}'.format(qty=line.quantity)"/>
+                  </td>
+                  <td>
+                    <span class="invoiceLine invoiceLine--product" t-esc="line.product_id.name.upper()"/>
+                  </td>
+                  <td class="text-right">
+                    <span class="invoiceLine invoiceLine--priceUnit" t-esc="'$ {price:.2f}'.format(price=round(line.price_unit, 2))"/>
+                  </td>
+                  <td class="text-right">
+                    <span class="invoiceLine invoiceLine--priceSubtotal" t-esc="'$ {total:.2f}'.format(total=round(line.price_subtotal*1.13,2))"/>
+                  </td>
+                </tr>
+              </t>
+      </table>
+		  <span id="amount" style="" t-esc="o.amount_text.upper()"/>
+		<table id="amountTotal">
+      <tr>
+        <td></td>
+        <td class="text-right">
+          <span id="amountTotal" t-esc="'$ {amount:.2f}'.format(amount=round(o.amount_untaxed,2)+round(o.amount_tax,2))"/>
+        </td>
+      </tr>
+    </table>
+    <table>
+      <tr><td>RECIBIDO</td></tr>
+    </table>
+    <br/>
+    <br/>
+    <span>Nombre:</span>
+    <span>_________________________________</span>
+    <br/>
+    <br/>
+    <span>DUI:</span>
+    <span>_________________________________</span>
+    <br/>
+    <br/>
+    <span>Firma:</span>
+    <span>_________________________________</span>
+    <br/>
+    <br/>
+    <table>
+      <tr><td>ENTREGADO</td></tr>
+    </table>
+    <br/>
+    <br/>
+    <span>Nombre:</span>
+    <span>_________________________________</span>
+    <br/>
+    <br/>
+    <span>DUI:</span>
+    <span>_________________________________</span>
+    <br/>
+    <br/>
+    <span>Firma:</span>
+    <span>_________________________________</span>
+      </div>
+      <div class="footer">
+      </div>
+		</template>
+	</data>
+</odoo>

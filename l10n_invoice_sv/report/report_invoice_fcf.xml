@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<template id="report_invoice_fcf">
+			<t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
+           <div class="header">
+      </div>
+      <div class="page" style="0px solid black;">
+        <style type="text/css">
+
+          .field{
+            font-size: 15px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            border: 0px solid black;
+            font-weight: bold;
+            font-color:#333
+          }
+
+          #partner--name{
+            position: fixed;
+            top: 47mm;
+            left: 18mm;
+            width: 60mm;
+            height: 2em;
+             width: 100%;
+          }
+
+          #partner--address{
+            position: fixed;
+            top: 54mm;
+            left: 18mm;
+            width: 100%;
+            height: 3em;
+          }
+	  #invoice--date{
+	    position: fixed;
+	    top: 40mm;
+	    left: 18mm;
+	    width: 100px;
+            text:right;
+
+	    }
+	  #tableDiv{
+	  	position: fixed;
+		top: 68mm;
+	  }
+          #invoice--lines{
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+            font-size: 15px;
+            font-weight: bold;
+          }
+          span{
+            font-weight: lighter;
+            font-color: #333;
+          }
+          td{
+            font-size: 12px;
+            font-weight: bold;
+            font-color: #333;
+          }
+          table td{
+            overflow:hidden;
+            white-space:nowrap;
+            text-overflow: ellipsis;
+            font-weight: 100;
+            border: none!important;
+          }
+          table td span{
+            font-weight: 100;
+            border: none!important;
+          }
+           #dirrecion{
+            overflow:hidden;
+            white-space:nowrap;
+            text-overflow: ellipsis;
+          }
+          #detalle th{
+           /* font-size: x-small;
+            border-top: 1px solid black;
+            border-bottom: 1px solid black;*/
+          }
+          .cliente td{
+            padding-bottom: 11px;
+          }
+          pre{
+          padding:0px!important;
+			    margin: 0px!important;
+			    background:none!important;
+			    border:none;
+			    font-size: 14px;
+			    font-weight: bold;
+			    font-color: #333;
+			    }
+        </style>
+        <div style="border: none;">
+        <span id="invoice--date" class="field" t-esc="o.date_invoice"/>
+        <span id="partner--name" class="field" t-esc="o.partner_id.name"/>
+        <span id="partner--address" class="field" t-esc="o.partner_id.street"/>
+	</div>
+	<div id="tableDiv" style="padding-right: 35mm;">
+          <table id="invoice--lines">
+              <tr>
+                <td class="text-center" style="width: 12%"/>
+                <td class="text-center" style="width: 56%"/>
+                <td class="text-center" style="width: 27%"/>
+                <td class="text-right" style="width: 16%"/>
+              </tr>
+              <t t-foreach="o.invoice_line_ids" t-as="line">
+                <tr>
+                  <td class="text-center" style="padding-bottom: 10px; font-size: 15px;padding-right: 15px; font-color:#333 font-weight: bold;">
+                    <span style="font-color:#333; font-weight: bold;" t-esc="'{qty:.2f}'.format(qty=line.quantity)"/>
+                  </td>
+                  <td>
+                    <span style="padding-left: 20px;font-size: 15px; font-color:#333; font-weight: bold;" t-esc="line.product_id.name.upper()"/>
+                  </td>
+                  <td class="text-right" style="padding-bottom: 10px; font-color:#333; font-weight: bold;">
+                    <span style="font-size: 15px; font-weight: bold;" t-esc="'$ {price:.2f}'.format(price=line.price_unit)"/>
+                  </td>
+                  <td class="text-right" style="padding-bottom: 10px; font-color:#333; font-weight: bold;">
+                    <span style="padding-right: 20px; font-size: 15px; font-weight: bold;" t-esc="'$ {total:.2f}'.format(total=line.price_unit*line.quantity)"/>
+                  </td>
+                </tr>
+              </t>
+      </table>
+      </div>
+        <div class="row" style="border: 0px solid black;">
+          <style>
+            #total{
+              width: 100%;
+              table-layout: fixed;
+	      /*position: absolute;
+			  left: 20px;
+			  top: 650px;*/
+		}
+	    #divTableTotal{
+	    	position: fixed;
+		top: 700px;
+		left: 40px;
+		margin-right: 40mm;
+	    }
+            #total td{
+              font-size: 14px;
+              font-weight: lighter;
+            }
+            #total td span{
+              padding-right: 15px;
+            }
+	    #amount{
+	      width: 50%;
+              position: absolute;
+	      left: 35px;
+              top:700px;
+	    }
+          </style>
+		  <span id="amount" style="word-wrap: break-word; font-color:#333; padding-left: 15px; font-weight: bold; font-size: 15px;" t-esc="o.amount_text.upper()"/>
+		<div id="divTableTotal">
+		  <table id="total">
+            <tr>
+              <td style="width: 80%; padding-left: 70px; padding-bottom: 12px; font-size: 15px;  font-color:#333;">
+
+              </td>
+              <td class="text-right" style="width: 70%; padding-bottom: 12px;">
+                <span style="padding-left: 190px; font-size: 15px; font-color:#333; font-weight: bold;" t-esc="'$ {amount:.2f}'.format(amount=round(o.amount_untaxed,2)+round(o.amount_tax,2))"/>
+              </td>
+            </tr>
+          <!--  <tr>
+              <td style="padding-bottom: 12px;">
+              </td>
+               <td class="text-right" style="padding-bottom: 12px;">
+                <span t-esc="'$ {amount:.2f}'.format(amount=round(o.amount_tax,2))"/>
+              </td>
+            </tr>
+            <tr>
+              <td>
+              </td>
+              <td class="text-right" style="padding-bottom: 95px;">
+                <span t-esc="'$ {amount:.2f}'.format(amount=round(o.amount_untaxed,2)+round(o.amount_tax,2))"/>
+              </td>
+            </tr> -->
+            <tr>
+              <td>
+              </td>
+              <td class="text-right" style="padding-top: 42px; padding-left: 120px;">
+                <span style="padding-left: 80px; font-size: 15px; font-color:#333; font-weight: bold;" t-esc="'$ {amount:.2f}'.format(amount=round(o.amount_untaxed,2)+round(o.amount_tax,2))"/>
+              </td>
+            </tr>
+    </table>
+    </div>
+        </div>
+      </div>
+      <div class="footer">
+      </div>
+		</template>
+	</data>
+</odoo>

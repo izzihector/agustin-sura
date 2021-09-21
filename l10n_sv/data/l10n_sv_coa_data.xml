@@ -1,0 +1,936 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+  <data noupdate="0">
+    <record id="transfer_account_id" model="account.account.template">
+      <field name="code">11104</field>
+      <field name="name">Cuentas de ahorro</field>
+      <field name="reconcile" eval="True"/>
+      <field name="user_type_id" ref="account.data_account_type_current_assets"/>
+    </record>
+    <record id="sv_coa" model="account.chart.template">
+      <field name="name">Plan de cuentas</field>
+      <field name="code_digits">4</field>
+      <field name="bank_account_code_prefix">11103</field>
+      <field name="cash_account_code_prefix">11101</field>
+      <field name="transfer_account_id" ref="transfer_account_id"/>
+      <field name="currency_id" ref="base.USD"/>
+    </record>
+    <record id="transfer_account_id" model="account.account.template">
+      <field name="chart_template_id" ref="sv_coa"/>
+    </record>
+    <record id="1110101" model="account.account.template">
+      <field name="code">1110101</field>
+      <field name="name">Caja General</field>
+      <field name="user_type_id" ref="account.data_account_type_liquidity"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="11101"/>
+    </record>
+    <record id="1110201" model="account.account.template">
+      <field name="code">1110201</field>
+      <field name="name">Reporto</field>
+      <field name="user_type_id" ref="account.data_account_type_current_assets"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="11102"/>
+    </record>
+    <record id="11103" model="account.account.template">
+      <field name="code">11103</field>
+      <field name="name">Cuentas Corrientes en Bancos</field>
+      <field name="user_type_id" ref="account.data_account_type_liquidity"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="111"/>
+    </record>
+    <record id="11105" model="account.account.template">
+      <field name="code">11105</field>
+      <field name="name">Inversiones temporales bancarias</field>
+      <field name="user_type_id" ref="account.data_account_type_liquidity"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="111"/>
+    </record>
+    <record id="11201" model="account.account.template">
+      <field name="code">11201</field>
+      <field name="name">Clientes</field>
+      <field name="user_type_id" ref="account.data_account_type_receivable"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="112"/>
+      <field name="reconcile" eval="True"/>
+    </record>
+    <record id="11202" model="account.account.template">
+      <field name="code">11202</field>
+      <field name="name">Préstamos y anticipos a empleados</field>
+      <field name="user_type_id" ref="account.data_account_type_receivable"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="112"/>
+      <field name="reconcile" eval="True"/>
+    </record>
+    <record id="1120301" model="account.account.template">
+      <field name="code">1120301</field>
+      <field name="name">Cheques pendientes de liquidar</field>
+      <field name="user_type_id" ref="account.data_account_type_receivable"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="11203"/>
+      <field name="reconcile" eval="True"/>
+    </record>
+    <record id="11204" model="account.account.template">
+      <field name="code">11204</field>
+      <field name="name">Depósitos en garantía</field>
+      <field name="user_type_id" ref="account.data_account_type_receivable"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="112"/>
+      <field name="reconcile" eval="True"/>
+    </record>
+    <record id="11205" model="account.account.template">
+      <field name="code">11205</field>
+      <field name="name">Partes relacionadas</field>
+      <field name="user_type_id" ref="account.data_account_type_receivable"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="112"/>
+      <field name="reconcile" eval="True"/>
+    </record>
+    <record id="11209" model="account.account.template">
+      <field name="code">11209</field>
+      <field name="name">Estimación, obsolescencia y deterioro para cuentas incobrables (CR)</field>
+      <field name="user_type_id" ref="account.data_account_type_receivable"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="112"/>
+      <field name="reconcile" eval="True"/>
+    </record>
+    <record id="11301" model="account.account.template">
+      <field name="code">11301</field>
+      <field name="name">Personal administrativo</field>
+      <field name="user_type_id" ref="account.data_account_type_prepayments"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="113"/>
+      <field name="reconcile" eval="True"/>
+    </record>
+    <record id="11401" model="account.account.template">
+      <field name="code">11401</field>
+      <field name="name">Productos para la venta</field>
+      <field name="user_type_id" ref="account.data_account_type_current_assets"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="114"/>
+    </record>
+    <record id="11402" model="account.account.template">
+      <field name="code">11402</field>
+      <field name="name">Estimación, obsolescencia y deterioro de inventarios (CR)</field>
+      <field name="user_type_id" ref="account.data_account_type_current_assets"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="114"/>
+    </record>
+    <record id="11501" model="account.account.template">
+      <field name="code">11501</field>
+      <field name="name">Impuesto sobre la renta</field>
+      <field name="user_type_id" ref="account.data_account_type_prepayments"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="115"/>
+    </record>
+    <record id="11502" model="account.account.template">
+      <field name="code">11502</field>
+      <field name="name">Seguros</field>
+      <field name="user_type_id" ref="account.data_account_type_prepayments"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="115"/>
+    </record>
+    <record id="11503" model="account.account.template">
+      <field name="code">11503</field>
+      <field name="name">Papelería y útiles</field>
+      <field name="user_type_id" ref="account.data_account_type_prepayments"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="115"/>
+    </record>
+    <record id="11504" model="account.account.template">
+      <field name="code">11504</field>
+      <field name="name">Otros pagos anticipados</field>
+      <field name="user_type_id" ref="account.data_account_type_prepayments"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="115"/>
+    </record>
+    <record id="11505" model="account.account.template">
+      <field name="code">11505</field>
+      <field name="name">Intereses</field>
+      <field name="user_type_id" ref="account.data_account_type_prepayments"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="115"/>
+    </record>
+    <record id="11506" model="account.account.template">
+      <field name="code">11506</field>
+      <field name="name">Pago a cuenta</field>
+      <field name="user_type_id" ref="account.data_account_type_prepayments"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="115"/>
+    </record>
+    <record id="11507" model="account.account.template">
+      <field name="code">11507</field>
+      <field name="name">Retenciones bancarias</field>
+      <field name="user_type_id" ref="account.data_account_type_prepayments"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="115"/>
+    </record>
+    <record id="11601" model="account.account.template">
+      <field name="code">11601</field>
+      <field name="name">Crédito en compras gravadas</field>
+      <field name="user_type_id" ref="account.data_account_type_current_assets"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="116"/>
+    </record>
+    <record id="11602" model="account.account.template">
+      <field name="code">11602</field>
+      <field name="name">Crédito por percepciones en compras</field>
+      <field name="user_type_id" ref="account.data_account_type_current_assets"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="116"/>
+    </record>
+    <record id="11603" model="account.account.template">
+      <field name="code">11603</field>
+      <field name="name">Crédito por retenciones en ventas</field>
+      <field name="user_type_id" ref="account.data_account_type_current_assets"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="116"/>
+    </record>
+    <record id="117" model="account.account.template">
+      <field name="code">117</field>
+      <field name="name">OBRAS EN PROCESO</field>
+      <field name="user_type_id" ref="account.data_account_type_current_assets"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="11"/>
+    </record>
+    <record id="11801" model="account.account.template">
+      <field name="code">11801</field>
+      <field name="name">Arrendamiento financiero</field>
+      <field name="user_type_id" ref="account.data_account_type_current_assets"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="118"/>
+    </record>
+    <record id="11802" model="account.account.template">
+      <field name="code">11802</field>
+      <field name="name">Depreciación por arrendamiento financiero (CR)</field>
+      <field name="user_type_id" ref="account.data_account_type_current_assets"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="118"/>
+    </record>
+    <record id="11901" model="account.account.template">
+      <field name="code">11901</field>
+      <field name="name">Títulos valores</field>
+      <field name="user_type_id" ref="account.data_account_type_receivable"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="119"/>
+      <field name="reconcile" eval="True"/>
+    </record>
+    <record id="12101" model="account.account.template">
+      <field name="code">12101</field>
+      <field name="name">Terrenos</field>
+      <field name="user_type_id" ref="account.data_account_type_non_current_assets"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="121"/>
+    </record>
+    <record id="12102" model="account.account.template">
+      <field name="code">12102</field>
+      <field name="name">Edificaciones</field>
+      <field name="user_type_id" ref="account.data_account_type_non_current_assets"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="121"/>
+    </record>
+    <record id="12103" model="account.account.template">
+      <field name="code">12103</field>
+      <field name="name">Vehículos</field>
+      <field name="user_type_id" ref="account.data_account_type_non_current_assets"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="121"/>
+    </record>
+    <record id="12104" model="account.account.template">
+      <field name="code">12104</field>
+      <field name="name">Maquinaria y equipos</field>
+      <field name="user_type_id" ref="account.data_account_type_non_current_assets"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="121"/>
+    </record>
+    <record id="12105" model="account.account.template">
+      <field name="code">12105</field>
+      <field name="name">Mobiliario y equipo de oficina</field>
+      <field name="user_type_id" ref="account.data_account_type_non_current_assets"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="121"/>
+    </record>
+    <record id="12106" model="account.account.template">
+      <field name="code">12106</field>
+      <field name="name">Herramienta y equipo pequeño</field>
+      <field name="user_type_id" ref="account.data_account_type_non_current_assets"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="121"/>
+    </record>
+    <record id="12107" model="account.account.template">
+      <field name="code">12107</field>
+      <field name="name">Equipos de refrigeración</field>
+      <field name="user_type_id" ref="account.data_account_type_non_current_assets"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="121"/>
+    </record>
+    <record id="12108" model="account.account.template">
+      <field name="code">12108</field>
+      <field name="name">Muebles y enseres</field>
+      <field name="user_type_id" ref="account.data_account_type_non_current_assets"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="121"/>
+    </record>
+    <record id="12201" model="account.account.template">
+      <field name="code">12201</field>
+      <field name="name">Programas y sistemas informáticos</field>
+      <field name="user_type_id" ref="account.data_account_type_non_current_assets"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="122"/>
+    </record>
+    <record id="12202" model="account.account.template">
+      <field name="code">12202</field>
+      <field name="name">Amortización de activos intangibles (CR)</field>
+      <field name="user_type_id" ref="account.data_account_type_non_current_assets"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="122"/>
+    </record>
+    <record id="12301" model="account.account.template">
+      <field name="code">12301</field>
+      <field name="name">Terrenos</field>
+      <field name="user_type_id" ref="account.data_account_type_non_current_assets"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="123"/>
+    </record>
+    <record id="12302" model="account.account.template">
+      <field name="code">12302</field>
+      <field name="name">Edificaciones</field>
+      <field name="user_type_id" ref="account.data_account_type_non_current_assets"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="123"/>
+    </record>
+    <record id="12303" model="account.account.template">
+      <field name="code">12303</field>
+      <field name="name">Depreciación por bienes revaluados (CR)</field>
+      <field name="user_type_id" ref="account.data_account_type_non_current_assets"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="123"/>
+    </record>
+    <record id="12401" model="account.account.template">
+      <field name="code">12401</field>
+      <field name="name">Depreciación acumulada de edificaciones</field>
+      <field name="user_type_id" ref="account.data_account_type_non_current_assets"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="124"/>
+    </record>
+    <record id="12402" model="account.account.template">
+      <field name="code">12402</field>
+      <field name="name">Depreciación acumulada de vehículos</field>
+      <field name="user_type_id" ref="account.data_account_type_non_current_assets"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="124"/>
+    </record>
+    <record id="12403" model="account.account.template">
+      <field name="code">12403</field>
+      <field name="name">Depreciación acumulada de maquinaria y equipo</field>
+      <field name="user_type_id" ref="account.data_account_type_non_current_assets"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="124"/>
+    </record>
+    <record id="12404" model="account.account.template">
+      <field name="code">12404</field>
+      <field name="name">Depreciación acumulada de mobiliario y equipo de oficina</field>
+      <field name="user_type_id" ref="account.data_account_type_non_current_assets"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="124"/>
+    </record>
+    <record id="12405" model="account.account.template">
+      <field name="code">12405</field>
+      <field name="name">Depreciación acumulada de herramienta y equipo pequeño</field>
+      <field name="user_type_id" ref="account.data_account_type_non_current_assets"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="124"/>
+    </record>
+    <record id="12406" model="account.account.template">
+      <field name="code">12406</field>
+      <field name="name">Depreciación acumulada de equipos de refirgeración</field>
+      <field name="user_type_id" ref="account.data_account_type_non_current_assets"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="124"/>
+    </record>
+    <record id="12407" model="account.account.template">
+      <field name="code">12407</field>
+      <field name="name">Depreciación acumulada de muebles y enseres</field>
+      <field name="user_type_id" ref="account.data_account_type_non_current_assets"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="124"/>
+    </record>
+    <record id="12501" model="account.account.template">
+      <field name="code">12501</field>
+      <field name="name">Inversiones en acciones</field>
+      <field name="user_type_id" ref="account.data_account_type_fixed_assets"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="125"/>
+    </record>
+    <record id="12502" model="account.account.template">
+      <field name="code">12502</field>
+      <field name="name">Inversiones en títulos valores</field>
+      <field name="user_type_id" ref="account.data_account_type_fixed_assets"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="125"/>
+    </record>
+    <record id="12601" model="account.account.template">
+      <field name="code">12601</field>
+      <field name="name">Préstamos a empleados</field>
+      <field name="user_type_id" ref="account.data_account_type_non_current_assets"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="126"/>
+    </record>
+    <record id="12701" model="account.account.template">
+      <field name="code">12701</field>
+      <field name="name">Arrendamiento financiero</field>
+      <field name="user_type_id" ref="account.data_account_type_non_current_assets"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="127"/>
+    </record>
+    <record id="12702" model="account.account.template">
+      <field name="code">12702</field>
+      <field name="name">Estimación para cuentas incobrables por arrendamiento (CR)</field>
+      <field name="user_type_id" ref="account.data_account_type_non_current_assets"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="127"/>
+    </record>
+    <record id="21101" model="account.account.template">
+      <field name="code">21101</field>
+      <field name="name">Proveedores locales</field>
+      <field name="user_type_id" ref="account.data_account_type_payable"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="211"/>
+      <field name="reconcile" eval="True"/>
+    </record>
+    <record id="21102" model="account.account.template">
+      <field name="code">21102</field>
+      <field name="name">Préstamos bancarios a corto plazo</field>
+      <field name="user_type_id" ref="account.data_account_type_payable"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="211"/>
+      <field name="reconcile" eval="True"/>
+    </record>
+    <record id="2110301" model="account.account.template">
+      <field name="code">2110301</field>
+      <field name="name">Planillas por pagar</field>
+      <field name="user_type_id" ref="account.data_account_type_payable"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="21103"/>
+      <field name="reconcile" eval="True"/>
+    </record>
+    <record id="2110302" model="account.account.template">
+      <field name="code">2110302</field>
+      <field name="name">Honorarios por pagar</field>
+      <field name="user_type_id" ref="account.data_account_type_receivable"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="21103"/>
+      <field name="reconcile" eval="True"/>
+    </record>
+    <record id="2110303" model="account.account.template">
+      <field name="code">2110303</field>
+      <field name="name">Indemnizaciones</field>
+      <field name="user_type_id" ref="account.data_account_type_payable"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="21103"/>
+      <field name="reconcile" eval="True"/>
+    </record>
+    <record id="2110304" model="account.account.template">
+      <field name="code">2110304</field>
+      <field name="name">Vacaciones</field>
+      <field name="user_type_id" ref="account.data_account_type_payable"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="21103"/>
+      <field name="reconcile" eval="True"/>
+    </record>
+    <record id="2110401" model="account.account.template">
+      <field name="code">2110401</field>
+      <field name="name">I.S.S.S.</field>
+      <field name="user_type_id" ref="account.data_account_type_payable"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="21104"/>
+      <field name="reconcile" eval="True"/>
+    </record>
+    <record id="2110402" model="account.account.template">
+      <field name="code">2110402</field>
+      <field name="name">AFP'S</field>
+      <field name="user_type_id" ref="account.data_account_type_payable"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="21104"/>
+      <field name="reconcile" eval="True"/>
+    </record>
+    <record id="2110403" model="account.account.template">
+      <field name="code">2110403</field>
+      <field name="name">Retenciones de renta</field>
+      <field name="user_type_id" ref="account.data_account_type_payable"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="21104"/>
+      <field name="reconcile" eval="True"/>
+    </record>
+    <record id="21105" model="account.account.template">
+      <field name="code">21105</field>
+      <field name="name">Proveedores del exterior</field>
+      <field name="user_type_id" ref="account.data_account_type_payable"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="211"/>
+      <field name="reconcile" eval="True"/>
+    </record>
+    <record id="21106" model="account.account.template">
+      <field name="code">21106</field>
+      <field name="name">Sobregiros bancarios</field>
+      <field name="user_type_id" ref="account.data_account_type_payable"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="211"/>
+      <field name="reconcile" eval="True"/>
+    </record>
+    <record id="21107" model="account.account.template">
+      <field name="code">21107</field>
+      <field name="name">Impuestos por pagar</field>
+      <field name="user_type_id" ref="account.data_account_type_payable"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="211"/>
+      <field name="reconcile" eval="True"/>
+    </record>
+    <record id="21201" model="account.account.template">
+      <field name="code">21201</field>
+      <field name="name">Préstamos bancarios</field>
+      <field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="212"/>
+    </record>
+    <record id="21202" model="account.account.template">
+      <field name="code">21202</field>
+      <field name="name">Préstamos no bancarios</field>
+      <field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="212"/>
+    </record>
+    <record id="21301" model="account.account.template">
+      <field name="code">21301</field>
+      <field name="name">I.V.A. por pagar</field>
+      <field name="user_type_id" ref="account.data_account_type_current_assets"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="213"/>
+    </record>
+    <record id="21302" model="account.account.template">
+      <field name="code">21302</field>
+      <field name="name">Impuesto sobre la renta pago a cuenta</field>
+      <field name="user_type_id" ref="account.data_account_type_current_assets"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="213"/>
+    </record>
+    <record id="21401" model="account.account.template">
+      <field name="code">21401</field>
+      <field name="name">Débito fiscal en ventas gravadas</field>
+      <field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="214"/>
+    </record>
+    <record id="21501" model="account.account.template">
+      <field name="code">21501</field>
+      <field name="name">Préstamos hipotecarios</field>
+      <field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="215"/>
+    </record>
+    <record id="21601" model="account.account.template">
+      <field name="code">21601</field>
+      <field name="name">Arrendamiento financiero</field>
+      <field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="216"/>
+    </record>
+    <record id="22101" model="account.account.template">
+      <field name="code">22101</field>
+      <field name="name">Préstamos de acreedores</field>
+      <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="221"/>
+    </record>
+    <record id="22102" model="account.account.template">
+      <field name="code">22102</field>
+      <field name="name">Otros préstamos por pagar largo plazo</field>
+      <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="221"/>
+    </record>
+    <record id="22201" model="account.account.template">
+      <field name="code">22201</field>
+      <field name="name">Préstamos bancarios</field>
+      <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="222"/>
+    </record>
+    <record id="22202" model="account.account.template">
+      <field name="code">22202</field>
+      <field name="name">Hipotecas por pagar</field>
+      <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="222"/>
+    </record>
+    <record id="22301" model="account.account.template">
+      <field name="code">22301</field>
+      <field name="name">Letras descontadas</field>
+      <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="223"/>
+    </record>
+    <record id="22302" model="account.account.template">
+      <field name="code">22302</field>
+      <field name="name">Hipotecas por pagar</field>
+      <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="223"/>
+    </record>
+    <record id="22401" model="account.account.template">
+      <field name="code">22401</field>
+      <field name="name">Arrendamiento financiero</field>
+      <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="224"/>
+    </record>
+    <record id="22501" model="account.account.template">
+      <field name="code">22501</field>
+      <field name="name">Provisión laboral</field>
+      <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="225"/>
+    </record>
+    <record id="31101" model="account.account.template">
+      <field name="code">31101</field>
+      <field name="name">Mario Antonio Valdivieso Gónzalez</field>
+      <field name="user_type_id" ref="account.data_account_type_equity"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="311"/>
+    </record>
+    <record id="31201" model="account.account.template">
+      <field name="code">31201</field>
+      <field name="name">Utilidad del ejercicio</field>
+      <field name="user_type_id" ref="account.data_unaffected_earnings"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="312"/>
+    </record>
+    <record id="313" model="account.account.template">
+      <field name="code">313</field>
+      <field name="name">PÉRDIDAS DEL EJERCICIO</field>
+      <field name="user_type_id" ref="account.data_account_type_equity"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="31"/>
+    </record>
+    <record id="314" model="account.account.template">
+      <field name="code">314</field>
+      <field name="name">SUPERÁVIT POR REVALUACIÓN</field>
+      <field name="user_type_id" ref="account.data_account_type_equity"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="31"/>
+    </record>
+    <record id="315" model="account.account.template">
+      <field name="code">315</field>
+      <field name="name">AJUSTES POR ADOPCIÓN DE LAS NIIF PARA LAS PYMES</field>
+      <field name="user_type_id" ref="account.data_account_type_equity"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="31"/>
+    </record>
+    <record id="41101" model="account.account.template">
+      <field name="code">41101</field>
+      <field name="name">Venta de productos lacteos</field>
+      <field name="user_type_id" ref="account.data_account_type_revenue"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="411"/>
+    </record>
+    <record id="41102" model="account.account.template">
+      <field name="code">41102</field>
+      <field name="name">Otros productos</field>
+      <field name="user_type_id" ref="account.data_account_type_revenue"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="411"/>
+    </record>
+    <record id="41103" model="account.account.template">
+      <field name="code">41103</field>
+      <field name="name">Ingresos por venta de activos</field>
+      <field name="user_type_id" ref="account.data_account_type_revenue"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="411"/>
+    </record>
+    <record id="41201" model="account.account.template">
+      <field name="code">41201</field>
+      <field name="name">Reparaciones</field>
+      <field name="user_type_id" ref="account.data_account_type_revenue"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="412"/>
+    </record>
+    <record id="41202" model="account.account.template">
+      <field name="code">41202</field>
+      <field name="name">Mantenimientos</field>
+      <field name="user_type_id" ref="account.data_account_type_revenue"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="412"/>
+    </record>
+    <record id="41301" model="account.account.template">
+      <field name="code">41301</field>
+      <field name="name">Intereses en cuentas de bancos</field>
+      <field name="user_type_id" ref="account.data_account_type_other_income"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="413"/>
+    </record>
+    <record id="41302" model="account.account.template">
+      <field name="code">41302</field>
+      <field name="name">Varios</field>
+      <field name="user_type_id" ref="account.data_account_type_other_income"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="413"/>
+    </record>
+    <record id="51201" model="account.account.template">
+      <field name="code">51201</field>
+      <field name="name">Costo de los productos vendidos</field>
+      <field name="user_type_id" ref="account.data_account_type_direct_costs"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="512"/>
+    </record>
+    <record id="51301" model="account.account.template">
+      <field name="code">51301</field>
+      <field name="name">Sueldos y salarios</field>
+      <field name="user_type_id" ref="account.data_account_type_expenses"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="513"/>
+    </record>
+    <record id="51302" model="account.account.template">
+      <field name="code">51302</field>
+      <field name="name">Vacaciones</field>
+      <field name="user_type_id" ref="account.data_account_type_expenses"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="513"/>
+    </record>
+    <record id="51303" model="account.account.template">
+      <field name="code">51303</field>
+      <field name="name">Aguinaldos</field>
+      <field name="user_type_id" ref="account.data_account_type_expenses"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="513"/>
+    </record>
+    <record id="51304" model="account.account.template">
+      <field name="code">51304</field>
+      <field name="name">Prestaciones sociales</field>
+      <field name="user_type_id" ref="account.data_account_type_expenses"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="513"/>
+    </record>
+    <record id="51305" model="account.account.template">
+      <field name="code">51305</field>
+      <field name="name">Comisiones, gratificaciones y bonificaciones</field>
+      <field name="user_type_id" ref="account.data_account_type_expenses"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="513"/>
+    </record>
+    <record id="51306" model="account.account.template">
+      <field name="code">51306</field>
+      <field name="name">Indemnizaciones</field>
+      <field name="user_type_id" ref="account.data_account_type_expenses"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="513"/>
+    </record>
+    <record id="51307" model="account.account.template">
+      <field name="code">51307</field>
+      <field name="name">Sueldos eventuales</field>
+      <field name="user_type_id" ref="account.data_account_type_expenses"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="513"/>
+    </record>
+    <record id="51308" model="account.account.template">
+      <field name="code">51308</field>
+      <field name="name">Energía eléctrica</field>
+      <field name="user_type_id" ref="account.data_account_type_expenses"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="513"/>
+    </record>
+    <record id="51309" model="account.account.template">
+      <field name="code">51309</field>
+      <field name="name">Reparación de equipo de reparto</field>
+      <field name="user_type_id" ref="account.data_account_type_expenses"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="513"/>
+    </record>
+    <record id="51310" model="account.account.template">
+      <field name="code">51310</field>
+      <field name="name">Mantenimiento de muebles y enseres</field>
+      <field name="user_type_id" ref="account.data_account_type_expenses"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="513"/>
+    </record>
+    <record id="51311" model="account.account.template">
+      <field name="code">51311</field>
+      <field name="name">Cuota patronal I.S.S.S.</field>
+      <field name="user_type_id" ref="account.data_account_type_expenses"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="513"/>
+    </record>
+    <record id="51312" model="account.account.template">
+      <field name="code">51312</field>
+      <field name="name">Insaforp</field>
+      <field name="user_type_id" ref="account.data_account_type_expenses"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="513"/>
+    </record>
+    <record id="51313" model="account.account.template">
+      <field name="code">51313</field>
+      <field name="name">Afp aporte patronal</field>
+      <field name="user_type_id" ref="account.data_account_type_expenses"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="513"/>
+    </record>
+    <record id="51314" model="account.account.template">
+      <field name="code">51314</field>
+      <field name="name">Fletes</field>
+      <field name="user_type_id" ref="account.data_account_type_expenses"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="513"/>
+    </record>
+    <record id="51315" model="account.account.template">
+      <field name="code">51315</field>
+      <field name="name">Atención a clientes</field>
+      <field name="user_type_id" ref="account.data_account_type_expenses"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="513"/>
+    </record>
+    <record id="51401" model="account.account.template">
+      <field name="code">51401</field>
+      <field name="name">Sueldos y salarios</field>
+      <field name="user_type_id" ref="account.data_account_type_expenses"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="514"/>
+    </record>
+    <record id="51402" model="account.account.template">
+      <field name="code">51402</field>
+      <field name="name">Vacaciones</field>
+      <field name="user_type_id" ref="account.data_account_type_expenses"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="514"/>
+    </record>
+    <record id="51403" model="account.account.template">
+      <field name="code">51403</field>
+      <field name="name">Aguinaldos</field>
+      <field name="user_type_id" ref="account.data_account_type_expenses"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="514"/>
+    </record>
+    <record id="51404" model="account.account.template">
+      <field name="code">51404</field>
+      <field name="name">Prestaciones sociales</field>
+      <field name="user_type_id" ref="account.data_account_type_expenses"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="514"/>
+      <field name="reconcile" eval="True"/>
+    </record>
+    <record id="51405" model="account.account.template">
+      <field name="code">51405</field>
+      <field name="name">Comisiones, gratificaciones y bonificaciones</field>
+      <field name="user_type_id" ref="account.data_account_type_expenses"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="514"/>
+    </record>
+    <record id="51406" model="account.account.template">
+      <field name="code">51406</field>
+      <field name="name">Indemnizaciones</field>
+      <field name="user_type_id" ref="account.data_account_type_expenses"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="514"/>
+    </record>
+    <record id="51407" model="account.account.template">
+      <field name="code">51407</field>
+      <field name="name">Sueldos eventuales</field>
+      <field name="user_type_id" ref="account.data_account_type_expenses"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="514"/>
+    </record>
+    <record id="51408" model="account.account.template">
+      <field name="code">51408</field>
+      <field name="name">Energía eléctrica</field>
+      <field name="user_type_id" ref="account.data_account_type_expenses"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="514"/>
+    </record>
+    <record id="51409" model="account.account.template">
+      <field name="code">51409</field>
+      <field name="name">Reparación de equipo de reparto</field>
+      <field name="user_type_id" ref="account.data_account_type_expenses"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="514"/>
+    </record>
+    <record id="51410" model="account.account.template">
+      <field name="code">51410</field>
+      <field name="name">Mantenimiento de muebles y enseres</field>
+      <field name="user_type_id" ref="account.data_account_type_expenses"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="514"/>
+    </record>
+    <record id="51411" model="account.account.template">
+      <field name="code">51411</field>
+      <field name="name">Cuota patronal I.S.S.S.</field>
+      <field name="user_type_id" ref="account.data_account_type_expenses"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="514"/>
+    </record>
+    <record id="51412" model="account.account.template">
+      <field name="code">51412</field>
+      <field name="name">Insaforp</field>
+      <field name="user_type_id" ref="account.data_account_type_expenses"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="514"/>
+    </record>
+    <record id="51413" model="account.account.template">
+      <field name="code">51413</field>
+      <field name="name">Afp aporte patronal</field>
+      <field name="user_type_id" ref="account.data_account_type_expenses"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="514"/>
+    </record>
+    <record id="51414" model="account.account.template">
+      <field name="code">51414</field>
+      <field name="name">Fletes</field>
+      <field name="user_type_id" ref="account.data_account_type_expenses"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="514"/>
+    </record>
+    <record id="51415" model="account.account.template">
+      <field name="code">51415</field>
+      <field name="name">Atención a clientes</field>
+      <field name="user_type_id" ref="account.data_account_type_expenses"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="514"/>
+    </record>
+    <record id="52101" model="account.account.template">
+      <field name="code">52101</field>
+      <field name="name">Comisiones bancarias</field>
+      <field name="user_type_id" ref="account.data_account_type_expenses"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="521"/>
+    </record>
+    <record id="52102" model="account.account.template">
+      <field name="code">52102</field>
+      <field name="name">Intereses por operaciones financieras</field>
+      <field name="user_type_id" ref="account.data_account_type_expenses"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="521"/>
+    </record>
+    <record id="52103" model="account.account.template">
+      <field name="code">52103</field>
+      <field name="name">Otros</field>
+      <field name="user_type_id" ref="account.data_account_type_expenses"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="521"/>
+    </record>
+    <record id="611" model="account.account.template">
+      <field name="code">611</field>
+      <field name="name">PÉRDIDAS O GANANCIAS</field>
+      <field name="user_type_id" ref="account.data_unaffected_earnings"/>
+      <field name="chart_template_id" ref="sv_coa"/>
+      <field name="group_id" ref="61"/>
+    </record>
+    <record id="sv_coa" model="account.chart.template">
+      <field name="property_account_receivable_id" ref="11201"/>
+      <field name="property_account_payable_id" ref="21101"/>
+      <field name="property_account_expense_categ_id" ref="51201"/>
+      <field name="property_account_income_categ_id" ref="41101"/>
+      <field name="use_anglo_saxon" eval="True"/>
+      <field name="complete_tax_set" eval="True"/>
+      <field name="property_stock_account_input_categ_id" ref="11401"/>
+      <field name="property_stock_account_output_categ_id" ref="11401"/>
+      <field name="property_stock_valuation_account_id" ref="11401"/>
+    </record>
+  </data>
+</odoo>

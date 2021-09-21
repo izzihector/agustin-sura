@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <template id="report_invoice_ccf">
+      <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
+     <div class="header">
+
+      </div>
+      <div class="page">
+        <style type="text/css">
+          .field{
+            font-size: 16px;
+	    font-weight: 700;
+            overflow:hidden;
+            display: inline-block;
+            vertical-align: top;
+          }
+          #partner--name{
+            position: fixed;
+            top: 40mm;
+            width: 56.36%;
+            height: 3em;
+            margin-left: 13%;
+          }
+
+          #partner--address{
+            position: fixed;
+            top: 53mm;
+            width: 36.36%;
+            height: 3em;
+            margin-left: 13%;
+          }
+
+          #partner--giro{
+            position: fixed;
+            top: 65mm;
+            width: 36.36%;
+            height: 3em;
+            margin-left: 13%;
+          }
+
+          #invoice--date{
+            position: fixed;
+            top: 40mm;
+            margin-left: 63%;
+          }
+
+          #partner--nrc{
+            position: fixed;
+            top: 47mm;
+            height: 1.5em;
+            margin-left: 63%;
+          }
+
+          #partner--nit{
+            position: fixed;
+            top: 53mm;
+            height: 1.5em;
+            margin-left: 63%;
+          }
+
+          #detalle{
+            position: fixed;
+            top: 80mm;
+            margin-left: 0%;
+            margin-right: 15%;
+          }
+
+          table{
+
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+          }
+          table td{
+            overflow:hidden;
+            white-space:nowrap;
+            text-overflow: ellipsis;
+            font-weight: 700;
+          }
+          table td span{
+            font-weight: 700;
+          }
+          table td, table th{
+           /* padding: 1px 2px;
+            vertical-align: middle;*/
+          }
+          #giro, #dirrecion{
+            overflow:hidden;
+            white-space:nowrap;
+            text-overflow: ellipsis;
+          }
+          #detalle th{
+           /* font-size: x-small;
+            border-top: 1px solid black;
+            border-bottom: 1px solid black;*/
+          }
+          #detalle td{
+            /*border: 1px solid black;*/
+          }
+          #detalle span{
+            font-size: 15px;
+          }
+          span{
+            font-weight:700;
+          }
+          pre{
+            background:#fff!important;
+            border:none!important;
+          }
+          .cliente td{
+            padding-bottom: 11px;
+          }
+        </style>
+        <div class="row">
+<!--          <table>-->
+<!--            <tr>-->
+<!--              <td class="text-left" style="width: 70%;"></td>-->
+<!--              <td class="text-left" style="width: 30%;">-->
+<!--                <span t-esc="'{}/{}/{}'.format(o.date_invoice[8:],o.date_invoice[5:7],o.date_invoice[0:4]).upper()" style="padding-left: 40px; font-size: 15px; font-weight: bold;"/>-->
+<!--              </td>-->
+<!--            </tr>-->
+<!--          </table>-->
+          <span t-esc="o.partner_id.name" class="field" id="partner--name"/>
+          <span t-esc="o.partner_id.street" class="field" id="partner--address"/>
+          <span t-esc="o.partner_id.giro" class="field" id="partner--giro"/>
+          <span t-esc="'{}/{}/{}'.format(o.date_invoice[8:],o.date_invoice[5:7],o.date_invoice[0:4]).upper()" id="invoice--date" class="field" style="padding-left: 40px;"/>
+          <span t-esc="o.partner_id.nrc" class="field" id="partner--nrc"/>
+          <span t-esc="o.partner_id.nit" class="field" id="partner--nit"/>
+		<div style="color: #FFF; font-size: 0.7em;">-</div>
+        </div>
+        <!-- Aqui estan los productos -->
+<!--        <div class="row" style="padding-top: 9px;">-->
+<!--            <div style="color: #FFF; font-size: 3.5em;">-</div>-->
+          <div id="detalle">
+            <table style="width:100%;">
+              <tr>
+                <td class="text-center" style="width: 8%"/>
+                <td class="text-center" style="width: 57%"/>
+                <td class="text-center" style="width: 25%"/>
+                <td class="text-center" style="width: 10%"/>
+              </tr>
+              <t t-foreach="o.invoice_line_ids" t-as="line">
+                  <tr>
+                    <td class="text-right" style="padding-right: 5px; font-weight: bold;">
+                      <span style="font-weight: 700;" t-esc="'{qty:.2f}'.format(qty=line.quantity)"/>
+                    </td>
+                    <td>
+                      <span style="padding-left: 6px; font-weight: 700;" t-esc="line.product_id.name"/>
+                    </td>
+                    <td class="text-right" style="padding-bottom: 5px;">
+			    <span style="font-size: 15px; font-weight: 700;" t-esc="'$ {price:.2f}'.format(price=round(line.price_unit/1.13, 2))"/>
+                    </td>
+                    <td class="text-right">
+                      <span style="font-size: 15px; font-weight: 700;" t-esc="'$ {total:.2f}'.format(total=line.price_subtotal)"/>
+                    </td>
+                  </tr>
+              </t>
+            </table>
+            </div>
+        </div>
+        <div class="row">
+          <style>
+            #total{
+              margin-left: 62%;
+              position: fixed;
+              top: 175mm;
+            }
+            #total table{
+              width: 100%;
+              table-layout: fixed;
+            }
+            #total td{
+	      font-size: 15px;
+	      font-weight: 700;
+            }
+	    #amount{
+	      width: 50%;
+              position: fixed;
+	      top: 175mm;
+	      font-weight: 700;
+	    }
+          </style>
+		  <span id="amount" style="word-wrap: break-word; padding-left: 4%;" t-esc="o.amount_text.upper()"/>
+          <div id="total">
+          <table>
+            <tr>
+              <td style="width: 50%; padding-left: 30px; padding-bottom: 15px; font-size: 12px;">
+
+              </td>
+              <td class="text-right" style="width: 50%; padding-bottom: 12px;">
+                <span style="font-size: 15px; font-weight: 700;" t-esc="'{amount:.2f}'.format(amount=round(o.amount_untaxed,2))"/>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding-bottom: 0px;">
+              </td>
+              <td class="text-right" style="padding-bottom: 12px;">
+                <span style="font-size: 15px; font-weight: 700;" t-esc="'{amount:.2f}'.format(amount=round(o.amount_tax,2))"/>
+              </td>
+            </tr>
+            <tr>
+              <td>
+              </td>
+              <td class="text-right" style="padding-bottom: 50px;">
+                <span style="font-size: 15px; font-weight: 700;" t-esc="'{amount:.2f}'.format(amount=round(o.amount_untaxed,2)+round(o.amount_tax,2))"/>
+              </td>
+            </tr>
+            <tr>
+              <td>
+              </td>
+              <td class="text-right">
+                <span style="font-size: 15px; font-weight: 700;" t-esc="'{amount:.2f}'.format(amount=round(o.amount_untaxed,2)+round(o.amount_tax,2))"/>
+              </td>
+            </tr>
+          </table>
+        </div>
+        </div>
+      <div class="footer">
+      </div>
+    </template>
+  </data>
+</odoo>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <template id="vat_books_asets" name="vat_books_asets assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" href="/l10n_vat_books_sv/static/src/css/index.css"/>
+            </xpath>
+        </template>
+    </data>
+</odoo>

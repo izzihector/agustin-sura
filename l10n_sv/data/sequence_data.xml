@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="sequence_consumidor_final" model="ir.sequence">
+            <field name="name">Final Consumer Invoice</field>
+            <field name="code">account.invoice.fcf</field>
+            <field name="prefix">FCF</field>
+            <field eval="1" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+            <field eval="False" name="company_id"/>
+        </record>
+        <record id="sequence_credito_fiscal" model="ir.sequence">
+            <field name="name">Proof of Tax Credit</field>
+            <field name="code">account.invoice.ccf</field>
+            <field name="prefix">CCF</field>
+            <field eval="1" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+            <field eval="False" name="company_id"/>
+        </record>
+        <record id="sequence_nota_credito" model="ir.sequence">
+            <field name="name">Credit Note</field>
+            <field name="code">account.invoice.ndc</field>
+            <field name="prefix">NDC</field>
+            <field eval="1" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+            <field eval="False" name="company_id"/>
+        </record>
+        <record id="sequence_anulacion" model="ir.sequence">
+            <field name="name">Cancellations</field>
+            <field name="code">account.invoice.anu</field>
+            <field name="prefix">ANU</field>
+            <field eval="1" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+            <field eval="False" name="company_id"/>
+        </record>
+        <record id="sequence_orden_de_pedido" model="ir.sequence">
+            <field name="name">Orden de Pedido Bill</field>
+            <field name="code">account.invoice.odp</field>
+            <field name="prefix">ODP</field>
+            <field eval="1" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+            <field eval="False" name="company_id"/>
+        </record>
+        <record id="sequence_anulacion_orden_de_pedido" model="ir.sequence">
+            <field name="name">Cancellations Orden de Pedido</field>
+            <field name="code">account.invoice.anu.odp</field>
+            <field name="prefix">AOD</field>
+            <field eval="1" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+            <field eval="False" name="company_id"/>
+        </record>
+        <record id="sequence_ticket" model="ir.sequence">
+            <field name="name">Ticket Bill</field>
+            <field name="code">account.invoice.tck</field>
+            <field name="prefix">TCK</field>
+            <field eval="1" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+            <field eval="False" name="company_id"/>
+        </record>
+        <record id="sequence_anulacion_ticket" model="ir.sequence">
+            <field name="name">Cancellation Ticket Bill</field>
+            <field name="code">account.invoice.anu.tck</field>
+            <field name="prefix">AOT</field>
+            <field eval="1" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+            <field eval="False" name="company_id"/>
+        </record>
+        <record id="sequence_factura_exportacion" model="ir.sequence">
+            <field name="name">Factura de Exportacion</field>
+            <field name="code">account.invoice.exp</field>
+            <field name="prefix">EXP</field>
+            <field eval="1" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+            <field eval="False" name="company_id"/>
+        </record>
+        <record id="sequence_anulacion_exportacion" model="ir.sequence">
+            <field name="name">Anulacion de Factura de Exportacion</field>
+            <field name="code">account.invoice.anu.exp</field>
+            <field name="prefix">AXP</field>
+            <field eval="1" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+            <field eval="False" name="company_id"/>
+        </record>
+    </data>
+</odoo>

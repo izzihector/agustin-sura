@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'Arial1';
+    src: local('Arial1'), local('Arial1'), url('/static/src/fonts/Arial1.otf') format('opentype');
+}
+
+.head {
+    font-family:  Arial1;
+    font-size: 14px;
+}

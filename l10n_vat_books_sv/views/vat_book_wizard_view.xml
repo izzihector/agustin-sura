@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="Formulario de libros de IVA" model="ir.ui.view">
+        <field name="name">Libros de IVA</field>
+        <field name="model">l10n_vat_books_sv.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+            	<group>
+                    <field name="report_type" widget="radio"/>
+                </group>
+                <group>
+                    <group>
+                        <field name="date_from" attrs="{'required': True}"/>
+                    </group>
+                    <group>
+                        <field name="date_to" attrs="{'required': True}"/>
+                    </group>
+                    <field name="journal_ids" widget="many2many_tags" domain="['|', ('type', '=', 'sale'), ('type', '=', 'purchase')]"/>
+                </group>
+                <footer>
+                    <button type="object" name="generate_vat_book"
+                        string="Generar" class="oe_highlight"/>
+                    <button special="cancel" string="Cancelar"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <menuitem id="vat_books_menu"
+        name="Libros de IVA"
+        parent="account.menu_finance_legal_statement"
+        sequence="1000"
+        />
+</odoo>

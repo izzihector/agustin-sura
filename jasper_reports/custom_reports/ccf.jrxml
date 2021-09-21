@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 5.5.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Invoice_demo" language="groovy" pageWidth="615" pageHeight="399" columnWidth="615" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" whenResourceMissingType="Key" uuid="3b947157-9b03-40e8-a392-ed2bd8aeabe9">
+	<property name="OPENERP_RELATIONS" value="[&apos;invoice_line_ids&apos;]"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter (4)"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="mm"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="mm"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="mm"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="mm"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="mm"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="mm"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="mm"/>
+	<style name="Table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+			<topPen lineWidth="1.0" lineColor="#000000"/>
+			<leftPen lineWidth="1.0" lineColor="#000000"/>
+			<bottomPen lineWidth="1.0" lineColor="#000000"/>
+			<rightPen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+		<paragraph lineSpacing="Single"/>
+	</style>
+	<style name="Table_TH" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<paragraph lineSpacing="Single"/>
+	</style>
+	<style name="Table_CH" mode="Opaque" backcolor="#CACED0">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<paragraph lineSpacing="Single"/>
+	</style>
+	<style name="Table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<paragraph lineSpacing="Single"/>
+	</style>
+	<subDataset name="Dataset1" uuid="af9b26f7-29ca-4e0f-a4fd-cdcd1c3e7c22">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter (2)"/>
+		<queryString language="XPath">
+			<![CDATA[/data/record/]]>
+		</queryString>
+		<field name="id" class="java.lang.String">
+			<property name="net.sf.jasperreports.xpath.field.expression" value="id"/>
+			<fieldDescription><![CDATA[id]]></fieldDescription>
+		</field>
+		<field name="Amount-amount" class="java.lang.String">
+			<property name="net.sf.jasperreports.xpath.field.expression" value="Amount-amount"/>
+			<fieldDescription><![CDATA[Amount-amount]]></fieldDescription>
+		</field>
+		<field name="Tax_Description-name" class="java.lang.String">
+			<property name="net.sf.jasperreports.xpath.field.expression" value="Tax_Description-name"/>
+			<fieldDescription><![CDATA[Tax_Description-name]]></fieldDescription>
+		</field>
+		<field name="Name-product" class="java.lang.String">
+			<property name="net.sf.jasperreports.xpath.field.expression" value="/data/record/Product-product_id/Name-name"/>
+			<fieldDescription><![CDATA[/data/record/Product-product_id/Name-name]]></fieldDescription>
+		</field>
+		<field name="Name-prod" class="java.lang.String">
+			<property name="net.sf.jasperreports.xpath.field.expression" value="/data/record/Product-product_id/Name-name"/>
+			<fieldDescription><![CDATA[/data/record/Product-product_id/Name-name]]></fieldDescription>
+		</field>
+	</subDataset>
+	<queryString language="xPath">
+		<![CDATA[/data/record/]]>
+	</queryString>
+	<field name="City-city" class="java.lang.String">
+		<fieldDescription><![CDATA[Commercial_Entity-commercial_partner_id/City-city]]></fieldDescription>
+	</field>
+	<field name="Email-email" class="java.lang.String">
+		<fieldDescription><![CDATA[Commercial_Entity-commercial_partner_id/Email-email]]></fieldDescription>
+	</field>
+	<field name="Mobile-mobile" class="java.lang.String">
+		<fieldDescription><![CDATA[Commercial_Entity-commercial_partner_id/Mobile-mobile]]></fieldDescription>
+	</field>
+	<field name="Name-name" class="java.lang.String">
+		<fieldDescription><![CDATA[Commercial_Entity-commercial_partner_id/Name-name]]></fieldDescription>
+	</field>
+	<field name="Street-street" class="java.lang.String">
+		<fieldDescription><![CDATA[Commercial_Entity-commercial_partner_id/Street-street]]></fieldDescription>
+	</field>
+	<field name="Company_Name-name" class="java.lang.String">
+		<fieldDescription><![CDATA[Company-company_id/Company_Name-name]]></fieldDescription>
+	</field>
+	<field name="City-city_1" class="java.lang.String">
+		<fieldDescription><![CDATA[Company-company_id/City-city]]></fieldDescription>
+	</field>
+	<field name="Email-email_1" class="java.lang.String">
+		<fieldDescription><![CDATA[Company-company_id/Email-email]]></fieldDescription>
+	</field>
+	<field name="Street-street_1" class="java.lang.String">
+		<fieldDescription><![CDATA[Company-company_id/Street-street]]></fieldDescription>
+	</field>
+	<field name="Phone-phone" class="java.lang.String">
+		<fieldDescription><![CDATA[Company-company_id/Phone-phone]]></fieldDescription>
+	</field>
+	<field name="Description-name" class="java.lang.String">
+		<fieldDescription><![CDATA[Invoice_Lines-invoice_line_ids/Description-name]]></fieldDescription>
+	</field>
+	<field name="Amount-price_total" class="java.lang.String">
+		<fieldDescription><![CDATA[Invoice_Lines-invoice_line_ids/Amount-price_total]]></fieldDescription>
+	</field>
+	<field name="Unit_Price-price_unit" class="java.lang.String">
+		<fieldDescription><![CDATA[Invoice_Lines-invoice_line_ids/Unit_Price-price_unit]]></fieldDescription>
+	</field>
+	<field name="Quantity-quantity" class="java.lang.String">
+		<fieldDescription><![CDATA[Invoice_Lines-invoice_line_ids/Quantity-quantity]]></fieldDescription>
+	</field>
+	<field name="Amount-price_subtotal" class="java.lang.String">
+		<fieldDescription><![CDATA[Invoice_Lines-invoice_line_ids/Amount-price_subtotal]]></fieldDescription>
+	</field>
+	<field name="Total-amount_total" class="java.lang.String">
+		<fieldDescription><![CDATA[Total-amount_total]]></fieldDescription>
+	</field>
+	<field name="ID-id" class="java.lang.String">
+		<fieldDescription><![CDATA[Invoice_Lines-invoice_line_ids/ID-id]]></fieldDescription>
+	</field>
+	<field name="Invoice_Reference-invoice_id" class="java.lang.String">
+		<fieldDescription><![CDATA[Invoice_Lines-invoice_line_ids/Invoice_Reference-invoice_id]]></fieldDescription>
+	</field>
+	<field name="Display_Name-display_name" class="java.lang.String">
+		<fieldDescription><![CDATA[Display_Name-display_name]]></fieldDescription>
+	</field>
+	<field name="Number-number" class="java.lang.String">
+		<fieldDescription><![CDATA[Number-number]]></fieldDescription>
+	</field>
+	<field name="Tax-amount_tax" class="java.lang.String">
+		<fieldDescription><![CDATA[Tax-amount_tax]]></fieldDescription>
+	</field>
+	<field name="Total__In_Words_-amount_total_words" class="java.lang.String">
+		<fieldDescription><![CDATA[Total__In_Words_-amount_total_words]]></fieldDescription>
+	</field>
+	<field name="Untaxed_Amount-amount_untaxed" class="java.lang.String">
+		<fieldDescription><![CDATA[Untaxed_Amount-amount_untaxed]]></fieldDescription>
+	</field>
+	<field name="Invoice_Date-date_invoice" class="java.lang.String">
+		<fieldDescription><![CDATA[Invoice_Date-date_invoice]]></fieldDescription>
+	</field>
+	<field name="State_Name-name" class="java.lang.String">
+		<fieldDescription><![CDATA[Partner-partner_id/State-state_id/State_Name-name]]></fieldDescription>
+	</field>
+	<field name="NRC-nrc" class="java.lang.String">
+		<fieldDescription><![CDATA[Partner-partner_id/NRC-nrc]]></fieldDescription>
+	</field>
+	<field name="Giro-giro" class="java.lang.String">
+		<fieldDescription><![CDATA[Partner-partner_id/Giro-giro]]></fieldDescription>
+	</field>
+	<field name="NIT-nit" class="java.lang.String">
+		<fieldDescription><![CDATA[Partner-partner_id/NIT-nit]]></fieldDescription>
+	</field>
+	<field name="Amount_to_text-amount_text" class="java.lang.String">
+		<fieldDescription><![CDATA[Amount_to_text-amount_text]]></fieldDescription>
+	</field>
+	<field name="Invoice_Date-date_invoice_1" class="java.lang.String">
+		<fieldDescription><![CDATA[Invoice_Date-date_invoice]]></fieldDescription>
+	</field>
+	<field name="Payment_Terms-name" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="Payment_Terms-payment_term_id/Payment_Terms-name"/>
+		<fieldDescription><![CDATA[Payment_Terms-payment_term_id/Payment_Terms-name]]></fieldDescription>
+	</field>
+	<field name="Name-name_1" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="Salesperson-user_id/Name-name"/>
+		<fieldDescription><![CDATA[Salesperson-user_id/Name-name]]></fieldDescription>
+	</field>
+	<field name="id" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="Tax_Lines-tax_line_ids/id"/>
+		<fieldDescription><![CDATA[Tax_Lines-tax_line_ids/id]]></fieldDescription>
+	</field>
+	<field name="Amount-amount" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="Tax_Lines-tax_line_ids/Amount-amount"/>
+		<fieldDescription><![CDATA[Tax_Lines-tax_line_ids/Amount-amount]]></fieldDescription>
+	</field>
+	<field name="Tax_Description-name" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="Tax_Lines-tax_line_ids/Tax_Description-name"/>
+		<fieldDescription><![CDATA[Tax_Lines-tax_line_ids/Tax_Description-name]]></fieldDescription>
+	</field>
+	<field name="Monto_IVA-amount_iva" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="Monto_IVA-amount_iva"/>
+		<fieldDescription><![CDATA[Monto_IVA-amount_iva]]></fieldDescription>
+	</field>
+	<field name="Monto_IVA_retenido-amount_iva_retenido" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="Monto_IVA_retenido-amount_iva_retenido"/>
+		<fieldDescription><![CDATA[Monto_IVA_retenido-amount_iva_retenido]]></fieldDescription>
+	</field>
+	<field name="Name-name_2" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="/data/record/Product-product_id/Name-name"/>
+		<fieldDescription><![CDATA[/data/record/Product-product_id/Name-name]]></fieldDescription>
+	</field>
+	<field name="Name-name_3" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="/data/record/Invoice_Lines-invoice_line_ids/Product-product_id/Name-name"/>
+		<fieldDescription><![CDATA[/data/record/Invoice_Lines-invoice_line_ids/Product-product_id/Name-name]]></fieldDescription>
+	</field>
+	<field name="Reference-code" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="/data/record/Invoice_Lines-invoice_line_ids/Product-product_id/Reference-code"/>
+		<fieldDescription><![CDATA[/data/record/Invoice_Lines-invoice_line_ids/Product-product_id/Reference-code]]></fieldDescription>
+	</field>
+	<pageHeader>
+		<band height="198">
+			<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+			<textField>
+				<reportElement x="48" y="113" width="235" height="12" uuid="74ec9590-475c-459b-92f6-9c49cdc8cba5">
+					<property name="com.jaspersoft.studio.unit.y" value="mm"/>
+					<property name="com.jaspersoft.studio.unit.x" value="mm"/>
+				</reportElement>
+				<textElement>
+					<font fontName="SansSerif" size="9"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Name-name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="56" y="127" width="229" height="12" uuid="fa5b0169-a184-4610-9153-81d532063314">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="mm"/>
+					<property name="com.jaspersoft.studio.unit.x" value="mm"/>
+				</reportElement>
+				<textElement>
+					<font fontName="SansSerif" size="9"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Street-street}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="430" y="154" width="122" height="12" uuid="0989050d-c6b8-4cdf-975a-311f17f78a68">
+					<property name="com.jaspersoft.studio.unit.x" value="mm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="mm"/>
+				</reportElement>
+				<textElement>
+					<font fontName="SansSerif" size="9"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NRC-nrc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="FixRelativeToBottom" x="48" y="167" width="119" height="12" uuid="21e44997-fb77-4bd4-96c3-aea33f6612c4">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="mm"/>
+					<property name="com.jaspersoft.studio.unit.x" value="mm"/>
+				</reportElement>
+				<textElement>
+					<font fontName="SansSerif" size="9"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Giro-giro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="440" y="126" width="26" height="14" uuid="86d9ae89-4cc4-4b33-8bb2-2a3b2c0c3f9f">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+					<property name="com.jaspersoft.studio.unit.x" value="mm"/>
+					<property name="com.jaspersoft.studio.unit.y" value="mm"/>
+				</reportElement>
+				<textElement>
+					<font size="9"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Invoice_Date-date_invoice_1}.substring( 8, 10 )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="472" y="126" width="12" height="14" uuid="7c64f6b9-dc55-415e-ac40-691bb0f7c022">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				</reportElement>
+				<textElement>
+					<font size="9"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Invoice_Date-date_invoice_1}.substring(5,7)]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="505" y="126" width="45" height="14" uuid="f1872660-6cc9-4da2-8f66-ead10aba0f96">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				</reportElement>
+				<textElement>
+					<font size="9"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Invoice_Date-date_invoice_1}.substring(0,4)]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="433" y="141" width="119" height="12" uuid="45348a57-2c52-40bc-898e-c1c59d881d0d">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="mm"/>
+					<property name="com.jaspersoft.studio.unit.x" value="mm"/>
+				</reportElement>
+				<textElement>
+					<font fontName="SansSerif" size="9"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NIT-nit}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="469" y="126" width="1" height="14" uuid="22be0b18-77e4-4893-b5af-387f71e8d735">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				</reportElement>
+				<textElement>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[/]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="499" y="126" width="1" height="14" uuid="0f7c8782-365e-438c-90a6-e22c6228d349">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				</reportElement>
+				<textElement>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[/]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="90" y="141" width="100" height="12" uuid="79c91fb8-25b5-44d2-9ecf-29ea337d76ac">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="mm"/>
+					<property name="com.jaspersoft.studio.unit.x" value="mm"/>
+				</reportElement>
+				<textElement>
+					<font fontName="SansSerif" size="9"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Payment_Terms-name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="325" y="155" width="79" height="12" uuid="a05ab149-4488-46b7-a65e-8481518002bf">
+					<property name="com.jaspersoft.studio.unit.x" value="mm"/>
+					<property name="com.jaspersoft.studio.unit.y" value="mm"/>
+				</reportElement>
+				<textElement>
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Name-name_1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="204" y="141" width="100" height="12" uuid="287ad683-e4be-4aa3-8141-7b0f46b92a2c">
+					<property name="com.jaspersoft.studio.unit.y" value="mm"/>
+					<property name="com.jaspersoft.studio.unit.x" value="mm"/>
+				</reportElement>
+				<textElement>
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{State_Name-name}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="12">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<printWhenExpression><![CDATA[!$F{Name-name}.equals("Name-name")]]></printWhenExpression>
+			<textField>
+				<reportElement key="" x="53" y="0" width="399" height="12" isPrintWhenDetailOverflows="true" uuid="7e3c05f8-854a-4301-8065-bd317092196b">
+					<property name="com.jaspersoft.studio.unit.y" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="mm"/>
+				</reportElement>
+				<textElement textAlignment="Left">
+					<font fontName="SansSerif" size="9"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Description-name}.equals("Description-name") ? "" : $F{Description-name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="28" y="0" width="25" height="12" uuid="fcbc1260-c065-4ee8-86cd-d0c05d1143e9">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="mm"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" size="9"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Quantity-quantity}.equals("Quantity-quantity") ? "" : String.format("%.0f", Float.parseFloat($F{Quantity-quantity}))]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="456" y="0" width="36" height="12" uuid="beb17ea7-81eb-43f5-9657-cd3da76645e8">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="mm"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font fontName="SansSerif" size="9"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[String.format("%.4f", Float.parseFloat($F{Unit_Price-price_unit})/1.13)]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="549" y="0" width="42" height="12" uuid="9db4f048-22c1-40c7-82dd-75f28e3bca41">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="mm"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font fontName="SansSerif" size="9"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[String.format("%.2f", Float.parseFloat($F{Amount-price_subtotal}))]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="116">
+			<textField>
+				<reportElement positionType="FixRelativeToBottom" x="56" y="14" width="306" height="14" uuid="a2d826ec-7c19-4420-9b27-fc85c80f184f">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+					<property name="com.jaspersoft.studio.unit.y" value="mm"/>
+					<property name="com.jaspersoft.studio.unit.x" value="mm"/>
+				</reportElement>
+				<textElement>
+					<font fontName="SansSerif" size="9"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Amount_to_text-amount_text}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="FixRelativeToBottom" x="549" y="6" width="42" height="12" uuid="1fda84dc-32a8-4404-aebd-d4e8fabefc06">
+					<property name="com.jaspersoft.studio.unit.y" value="mm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="mm"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font fontName="SansSerif" size="9"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[String.format("%.2f", Float.parseFloat($F{Untaxed_Amount-amount_untaxed}))]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="FixRelativeToBottom" x="549" y="20" width="42" height="12" uuid="f9c2f118-596c-4035-9880-c5f731faa27e">
+					<property name="com.jaspersoft.studio.unit.y" value="mm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="mm"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font fontName="SansSerif" size="9"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[String.format("%.2f", Float.parseFloat($F{Monto_IVA-amount_iva}))]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="FixRelativeToBottom" x="549" y="75" width="42" height="14" uuid="b4333640-bb44-49b8-bd48-9e2fcf141646">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+					<property name="com.jaspersoft.studio.unit.x" value="mm"/>
+					<property name="com.jaspersoft.studio.unit.y" value="mm"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font fontName="SansSerif" size="9"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[String.format("%.2f", Float.parseFloat($F{Total-amount_total}))]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="549" y="31" width="42" height="14" uuid="8afa596e-18fd-495a-90b1-d5a9fa6bac6d">
+					<property name="com.jaspersoft.studio.unit.x" value="mm"/>
+					<property name="com.jaspersoft.studio.unit.y" value="mm"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font fontName="SansSerif" size="9"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[String.format("%.2f", Float.parseFloat($F{Monto_IVA_retenido-amount_iva_retenido}!=""?$F{Monto_IVA_retenido-amount_iva_retenido}:"0.00")*($F{Monto_IVA_retenido-amount_iva_retenido}!=""?-1:1))]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

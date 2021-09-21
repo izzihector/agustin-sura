@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="sale_commission_tree">
+        <field name="name">Sale commission tree</field>
+        <field name="model">sale.commission</field>
+        <field name="arch" type="xml">
+            <tree string="Tipos de comisión">
+                <field name="name" />
+                <field name="amount" />
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_commission">
+        <field name="name">Tipos de comisión</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.commission</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        name="Comisiones"
+        id="menu_sales_commissions_management"
+        parent="sale.sale_menu_root"
+        groups="sales_team.group_sale_manager"
+        sequence="4"
+    />
+
+    <menuitem
+        name="Tipos de comisión"
+        id="menu_sales_commision_types"
+        parent="menu_sales_commissions_management"
+        action="action_commission"
+    />
+</odoo>

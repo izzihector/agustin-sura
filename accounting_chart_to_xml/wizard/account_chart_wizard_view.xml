@@ -1,0 +1,46 @@
+<odoo>
+    <record id="account_chart_wizard" model="ir.ui.view">
+        <field name="name">Generación de XML data de plan de cuentas</field>
+        <field name="model">account_chart_to_xml.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group>
+                        <field name="name" required="False"/>
+                        <field name="transfer_account_id" required="False"/>
+                        <field name="bank_account_code_prefix" required="False" />
+                        <field name="currency_id" required="False"/>
+                        <field name="property_account_payable_id" required="False"/>
+                        <field name="property_account_income_categ_id" required="False"/>
+                        <field name="complete_tax_set" required="False"/>
+                        <field name="property_stock_account_output_categ_id" required="False"/>
+                    </group>
+                    <group>
+                        <field name="identifier" required="False"/>
+                        <field name="code_digits" requried="False"/>
+                        <field name="cash_account_code_prefix" required="False"/>
+                        <field name="property_account_receivable_id" required="False"/>
+                        <field name="property_account_expense_categ_id" required="False"/>
+                        <field name="use_anglo_saxon" required="False"/>
+                        <field name="property_stock_account_input_categ_id" required="False"/>
+                        <field name="property_stock_valuation_account_id" required="False"/>
+                    </group>
+                </group>
+                <footer>
+                    <button type="object" name="generate_xml"
+                        string="Generar XML's" class="oe_highlight" icon="fa-download"/>
+                    <button special="cancel" string="Cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action more button -->
+    <act_window id="action_account_chart_wizard"
+        name="Account Chart Wizard"
+        src_model="account.account"
+        res_model="account_chart_to_xml.wizard"
+        view_mode="form"
+        target="new"
+        multi="True"/>
+</odoo>

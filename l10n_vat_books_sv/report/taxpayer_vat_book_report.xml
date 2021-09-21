@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="paperformat_taxpayer_vat_book_report" model="report.paperformat">
+	      <field name="name">Libro de ventas con emisión de facturas</field>
+	      <field name="default" eval="True"/>
+	      <field name="format">Letter</field>
+	      <field name="orientation">Landscape</field>
+	      <field name="margin_top">20</field>
+	      <field name="margin_bottom">10</field>
+	      <field name="margin_left">10</field>
+	      <field name="margin_right">10</field>
+	      <field name="header_line" eval="False"/>
+	      <field name="header_spacing">0</field>
+	      <field name="dpi">100</field>
+	</record>
+    <template id="taxpayer_vat_book_report_main">
+        <t t-call="web.internal_layout">
+            <div class="header">
+
+            </div>
+            <div class="page">
+                <style>
+                    *{
+                        margin: 0px;
+                        padding: 0px;
+                    }
+
+                    /*Encabezado*/
+                    .header--title{
+                        text-align: center;
+                    }
+                    .sales--parent{
+                        font-weight: bold;
+                    }
+                    .sales--child{
+                        text-align: right;
+                    }
+
+                    /* Sistema de grillas*/
+                    .container{
+                        width: 100%;
+                    }
+
+                    #table{
+                      table-layout: fixed;
+                      width: 100%;
+                    }
+
+                    td{
+                      text-align: center;
+                    }
+
+
+                    /* fin Sistema de grillas */
+
+                    .thead{
+                        text-align: center;
+                    }
+
+                    .partner--name{
+                      text-align: left;
+                    }
+
+                    .table--day{
+                        text-align: center;
+                    }
+
+                    .money{
+                      text-align: right;
+                    }
+                    .text-left{
+                      text-align: left;
+                    }
+
+                    .table--number{
+                      text-align: center;
+                    }
+                    .tabla_resumen{
+                      table-layout: fixed;
+                      width: 100%;
+                    }
+                </style>
+                <div class="header--title"><span t-esc="company.partner_id.name.upper()"/></div>
+                <div>LIBRO DE VENTAS CON EMISIÓN DE COMPROBANTES DE CREDITO FISCAL</div>
+                <div>REGISTRO FISCAL: <span t-esc="company.partner_id.nrc"/></div>
+                <div>NIT: <span t-esc="company.partner_id.nit"/></div>
+                <div>
+                    <span>MES: <span t-esc="month[int(date_from[5:7]) - 1]"/></span>
+                    <span>AÑO: <span t-esc="date_from[0:4]"/></span>
+                </div>
+                <div class="container">
+                  <table id="table">
+                    <tr>
+                      <td style="width: 3em;"></td>
+                      <td>No. de</td>
+                      <td>Comprob. de</td>
+                      <td colspan="3">Nombre</td>
+                      <td>No. de</td>
+                      <td colspan="2">-----Ventas Internas-----</td>
+                      <td>IVA</td>
+                      <td>IVA</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td style="width: 3em;">Día</td>
+                      <td>Comprob.</td>
+                      <td>Retención</td>
+                      <td colspan="3">del cliente</td>
+                      <td>Registro</td>
+                      <td>Exentas</td>
+                      <td>Gravadas</td>
+                      <td>(Debito Fiscal)</td>
+                      <td>Retenido</td>
+                      <td>Total</td>
+                    </tr>
+                    <t t-foreach="ids" t-as="id">
+                      <tr>
+                        <td><span t-esc="int(vat_book_lines[id]['day'])"/></td>
+                        <td><span t-esc="vat_book_lines[id]['number'][3:].zfill(8)"/></td>
+                        <td></td>
+                        <td class="partner--name" colspan="3">
+                          <span t-esc="vat_book_lines[id]['partner_name']"/>
+                        </td>
+                        <td><span t-esc="vat_book_lines[id]['partner_nrc']"/></td>
+                        <td></td>
+                        <td class="money">
+                          <span t-esc="'{:.2f}'.format(vat_book_lines[id]['gravadas'])"/>
+                        </td>
+                        <td class="money">
+                          <span t-esc="'{:.2f}'.format(vat_book_lines[id]['iva'])"/>
+                        </td>
+                        <td class="money">
+                          <span t-esc="'{:.2f}'.format(vat_book_lines[id]['iva_ret'])"/>
+                        </td>
+                        <td class="money">
+                          <span t-esc="'{:.2f}'.format(vat_book_lines[id]['total'])"/>
+                        </td>
+                      </tr>
+                    </t>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td colspan="3">Total</td>
+                    <td></td>
+                    <td></td>
+                    <td class="money">
+                      <span t-esc="gravadas"/>
+                    </td>
+                    <td class="money">
+                      <span t-esc="iva"/>
+                    </td>
+                    <td class="money">
+                      <span t-esc="iva_ret"/>
+                    </td>
+                    <td class="money">
+                      <span t-esc="totales"/>
+                    </td>
+                  </tr>
+                  </table>
+                </div>
+                <br/>
+            </div>
+            <br/>
+            <div>
+            Calculo del Debito Fiscal
+            </div>
+            <table class="tabla_resumen">
+              <tr>
+                <td></td>
+                <td>Ventas</td>
+                <td>Ventas</td>
+                <td></td>
+                <td>Venta</td>
+                <td>Debito Fiscal</td>
+                <td>Debito Fiscal</td>
+                <td>IVA</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>Exentas</td>
+                <td>Gravadas</td>
+                <td>Exportaciones</td>
+                <td>Cat Terceros</td>
+                <td>Ventas Propias</td>
+                <td>Cta Terceros</td>
+                <td>Retenido</td>
+                <td>Total</td>
+              </tr>
+              <tr>
+                <td class="text-left">Consumidor Final</td>
+                <td class="money">0.00</td>
+                <td class="money"><span t-esc="customers_data['locales']"/></td>
+                <td class="money">0.00</td>
+                <td class="money">0.00</td>
+                <td class="money"><span t-esc="customers_data['iva']"/></td>
+                <td class="money">0.00</td>
+                <td class="money"><span t-esc="customers_data['iva_ret']"/></td>
+                <td class="money"><span t-esc="customers_data['total']"/></td>
+              </tr>
+              <tr>
+                <td class="text-left">Contribuyentes</td>
+                <td class="money">0.00</td>
+                <td class="money"><span t-esc="gravadas"/></td>
+                <td class="money">0.00</td>
+                <td class="money">0.00</td>
+                <td class="money"><span t-esc="iva"/></td>
+                <td class="money">0.00</td>
+                <td class="money"><span t-esc="iva_ret"/></td>
+                <td class="money"><span t-esc="totales"/></td>
+              </tr>
+                <td class="text-left">Totales</td>
+                <td class="money">0.00</td>
+                <td class="money"><span t-esc="calculo_gravadas"/></td>
+                <td class="money">0.00</td>
+                <td class="money">0.00</td>
+                <td class="money"><span t-esc="calculo_iva"/></td>
+                <td class="money">0.00</td>
+                <td class="money"><span t-esc="calculo_iva_ret"/></td>
+                <td class="money"><span t-esc="calculo_totales"/></td>
+              <tr>
+              </tr>
+            </table>
+            <br />
+            <br />
+            <br />
+            <t t-call="l10n_vat_books_sv.accountant_sign" />
+            <div class="footer">
+            </div>
+        </t>
+    </template>
+    <report
+  		id="taxpayer_vat_book_report"
+  		model="l10n_vat_books_sv.wizard"
+  		string="Libro de ventas con emisión de comprobantes de credito fiscal"
+  		report_type="qweb-pdf"
+  		name="l10n_vat_books_sv.taxpayer_vat_book_report_main"
+  		file="l10n_vat_books_sv.taxpayer_vat_book_report_main"
+  		attachment="('libro_de_ventas_con_credito_fiscal.pdf')"
+  		print_report_name="('libro_de_ventas_con_credito_fiscal.pdf')"
+  		paperformat="paperformat_taxpayer_vat_book_report"
+	    />
+</odoo>

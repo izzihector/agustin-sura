@@ -1,0 +1,274 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+  <data noupdate="0">
+    <record id="1" model="account.group">
+      <field name="name">ACTIVO</field>
+      <field name="code_prefix">1</field>
+    </record>
+    <record id="11" model="account.group">
+      <field name="name">ACTIVOS CORRIENTES</field>
+      <field name="code_prefix">11</field>
+      <field name="parent_id" ref="1"/>
+    </record>
+    <record id="111" model="account.group">
+      <field name="name">EFECTIVO Y EQUIVALENTES AL EFECTIVO</field>
+      <field name="code_prefix">111</field>
+      <field name="parent_id" ref="11"/>
+    </record>
+    <record id="11101" model="account.group">
+      <field name="name">Cajas</field>
+      <field name="code_prefix">11101</field>
+      <field name="parent_id" ref="111"/>
+    </record>
+    <record id="11102" model="account.group">
+      <field name="name">Equivalentes de efectivo</field>
+      <field name="code_prefix">11102</field>
+      <field name="parent_id" ref="111"/>
+    </record>
+    <record id="112" model="account.group">
+      <field name="name">CUENTAS POR COBRAR</field>
+      <field name="code_prefix">112</field>
+      <field name="parent_id" ref="11"/>
+    </record>
+    <record id="11203" model="account.group">
+      <field name="name">Deudores varios</field>
+      <field name="code_prefix">11203</field>
+      <field name="parent_id" ref="112"/>
+    </record>
+    <record id="113" model="account.group">
+      <field name="name">ANTICIPOS Y/O PRÉSTAMOS</field>
+      <field name="code_prefix">113</field>
+      <field name="parent_id" ref="11"/>
+    </record>
+    <record id="114" model="account.group">
+      <field name="name">INVENTARIOS</field>
+      <field name="code_prefix">114</field>
+      <field name="parent_id" ref="11"/>
+    </record>
+    <record id="115" model="account.group">
+      <field name="name">GASTOS PAGADOS POR ANTICIPADOS</field>
+      <field name="code_prefix">115</field>
+      <field name="parent_id" ref="11"/>
+    </record>
+    <record id="116" model="account.group">
+      <field name="name">CRÉDITO FISCAL IVA</field>
+      <field name="code_prefix">116</field>
+      <field name="parent_id" ref="11"/>
+    </record>
+    <record id="118" model="account.group">
+      <field name="name">ARRENDAMIENTO FINANCIERO A CORTO PLAZO</field>
+      <field name="code_prefix">118</field>
+      <field name="parent_id" ref="11"/>
+    </record>
+    <record id="119" model="account.group">
+      <field name="name">DOCUMENTOS POR COBRAR A CORTO PLAZO</field>
+      <field name="code_prefix">119</field>
+      <field name="parent_id" ref="11"/>
+    </record>
+    <record id="12" model="account.group">
+      <field name="name">ACTIVOS NO CORRIENTES</field>
+      <field name="code_prefix">12</field>
+      <field name="parent_id" ref="1"/>
+    </record>
+    <record id="121" model="account.group">
+      <field name="name">PROPIEDAD, PLANTA Y EQUIPO</field>
+      <field name="code_prefix">121</field>
+      <field name="parent_id" ref="12"/>
+    </record>
+    <record id="122" model="account.group">
+      <field name="name">ACTIVOS INTANGIBLES</field>
+      <field name="code_prefix">122</field>
+      <field name="parent_id" ref="12"/>
+    </record>
+    <record id="123" model="account.group">
+      <field name="name">REVALUACIONES</field>
+      <field name="code_prefix">123</field>
+      <field name="parent_id" ref="12"/>
+    </record>
+    <record id="124" model="account.group">
+      <field name="name">DEPRECIACIÓN ACUMULADA (CR)</field>
+      <field name="code_prefix">124</field>
+      <field name="parent_id" ref="12"/>
+    </record>
+    <record id="125" model="account.group">
+      <field name="name">INVERSIONES PERMANENTES</field>
+      <field name="code_prefix">125</field>
+      <field name="parent_id" ref="12"/>
+    </record>
+    <record id="126" model="account.group">
+      <field name="name">CUENTAS POR COBRAR A LARGO PLAZO</field>
+      <field name="code_prefix">126</field>
+      <field name="parent_id" ref="12"/>
+    </record>
+    <record id="127" model="account.group">
+      <field name="name">ARRENDAMIENTO FINANCIERO A LARGO PLAZO</field>
+      <field name="code_prefix">127</field>
+      <field name="parent_id" ref="12"/>
+    </record>
+    <record id="2" model="account.group">
+      <field name="name">PASIVO</field>
+      <field name="code_prefix">2</field>
+    </record>
+    <record id="21" model="account.group">
+      <field name="name">PASIVOS CORRIENTES</field>
+      <field name="code_prefix">21</field>
+      <field name="parent_id" ref="2"/>
+    </record>
+    <record id="211" model="account.group">
+      <field name="name">CUENTAS POR PAGAR COMERCIALES</field>
+      <field name="code_prefix">211</field>
+      <field name="parent_id" ref="21"/>
+    </record>
+    <record id="21103" model="account.group">
+      <field name="name">Obligaciones laborales por pagar</field>
+      <field name="code_prefix">21103</field>
+      <field name="parent_id" ref="211"/>
+    </record>
+    <record id="21104" model="account.group">
+      <field name="name">Retenciones legales</field>
+      <field name="code_prefix">21104</field>
+      <field name="parent_id" ref="211"/>
+    </record>
+    <record id="212" model="account.group">
+      <field name="name">PRÉSTAMOS POR PAGAR</field>
+      <field name="code_prefix">212</field>
+      <field name="parent_id" ref="21"/>
+    </record>
+    <record id="213" model="account.group">
+      <field name="name">IMPUESTOS POR PAGAR</field>
+      <field name="code_prefix">213</field>
+      <field name="parent_id" ref="21"/>
+    </record>
+    <record id="214" model="account.group">
+      <field name="name">DÉBITO FISCAL</field>
+      <field name="code_prefix">214</field>
+      <field name="parent_id" ref="21"/>
+    </record>
+    <record id="215" model="account.group">
+      <field name="name">DOCUMENTOS POR PAGAR</field>
+      <field name="code_prefix">215</field>
+      <field name="parent_id" ref="21"/>
+    </record>
+    <record id="216" model="account.group">
+      <field name="name">ARRENDAMIENTO FINANCIERO CORTO PLAZO</field>
+      <field name="code_prefix">216</field>
+      <field name="parent_id" ref="21"/>
+    </record>
+    <record id="22" model="account.group">
+      <field name="name">PASIVOS NO CORRIENTES</field>
+      <field name="code_prefix">22</field>
+      <field name="parent_id" ref="2"/>
+    </record>
+    <record id="221" model="account.group">
+      <field name="name">CUENTAS POR PAGAR LARGO PLAZO</field>
+      <field name="code_prefix">221</field>
+      <field name="parent_id" ref="22"/>
+    </record>
+    <record id="222" model="account.group">
+      <field name="name">PRÉSTAMOS POR PAGAR LARGO PLAZO</field>
+      <field name="code_prefix">222</field>
+      <field name="parent_id" ref="22"/>
+    </record>
+    <record id="223" model="account.group">
+      <field name="name">DOCUMENTOS POR PAGAR LARGO PLAZO</field>
+      <field name="code_prefix">223</field>
+      <field name="parent_id" ref="22"/>
+    </record>
+    <record id="224" model="account.group">
+      <field name="name">ARRENDAMIENTO FINANCIERO LARGO PLAZO</field>
+      <field name="code_prefix">224</field>
+      <field name="parent_id" ref="22"/>
+    </record>
+    <record id="225" model="account.group">
+      <field name="name">PROVISIONES A LARGO PLAZO</field>
+      <field name="code_prefix">225</field>
+      <field name="parent_id" ref="22"/>
+    </record>
+    <record id="3" model="account.group">
+      <field name="name">CAPITAL PERSONAL Y UTILIDADES</field>
+      <field name="code_prefix">3</field>
+    </record>
+    <record id="31" model="account.group">
+      <field name="name">CAPITAL PERSONAL</field>
+      <field name="code_prefix">31</field>
+      <field name="parent_id" ref="3"/>
+    </record>
+    <record id="311" model="account.group">
+      <field name="name">CAPITAL PERSONAL</field>
+      <field name="code_prefix">311</field>
+      <field name="parent_id" ref="31"/>
+    </record>
+    <record id="312" model="account.group">
+      <field name="name">UTILIDAD DEL EJERCICIO</field>
+      <field name="code_prefix">312</field>
+      <field name="parent_id" ref="31"/>
+    </record>
+    <record id="4" model="account.group">
+      <field name="name">CUENTAS DE RESULTADO ACREEDORAS</field>
+      <field name="code_prefix">4</field>
+    </record>
+    <record id="41" model="account.group">
+      <field name="name">INGRESOS POR ACTIVIDADES ORDINARIAS</field>
+      <field name="code_prefix">41</field>
+      <field name="parent_id" ref="4"/>
+    </record>
+    <record id="411" model="account.group">
+      <field name="name">INGRESOS POR ACTIVIDADES ORDINARIAS</field>
+      <field name="code_prefix">411</field>
+      <field name="parent_id" ref="41"/>
+    </record>
+    <record id="412" model="account.group">
+      <field name="name">REPARACIONES Y MANTENIMIENTOS</field>
+      <field name="code_prefix">412</field>
+      <field name="parent_id" ref="41"/>
+    </record>
+    <record id="413" model="account.group">
+      <field name="name">OTROS INGRESOS</field>
+      <field name="code_prefix">413</field>
+      <field name="parent_id" ref="41"/>
+    </record>
+    <record id="5" model="account.group">
+      <field name="name">CUENTAS DE RESULTADOS DEUDORAS</field>
+      <field name="code_prefix">5</field>
+    </record>
+    <record id="51" model="account.group">
+      <field name="name">COSTOS Y GASTOS DE OPERACIÓN</field>
+      <field name="code_prefix">51</field>
+      <field name="parent_id" ref="5"/>
+    </record>
+    <record id="512" model="account.group">
+      <field name="name">COSTO DE VENTAS</field>
+      <field name="code_prefix">512</field>
+      <field name="parent_id" ref="51"/>
+    </record>
+    <record id="513" model="account.group">
+      <field name="name">GASTOS DE ADMINISTRACIÓN</field>
+      <field name="code_prefix">513</field>
+      <field name="parent_id" ref="51"/>
+    </record>
+    <record id="514" model="account.group">
+      <field name="name">GASTOS DE VENTAS</field>
+      <field name="code_prefix">514</field>
+      <field name="parent_id" ref="51"/>
+    </record>
+    <record id="52" model="account.group">
+      <field name="name">GASTOS DE NO OPERACIÓN</field>
+      <field name="code_prefix">52</field>
+      <field name="parent_id" ref="5"/>
+    </record>
+    <record id="521" model="account.group">
+      <field name="name">GASTOS FINANCIEROS</field>
+      <field name="code_prefix">521</field>
+      <field name="parent_id" ref="52"/>
+    </record>
+    <record id="6" model="account.group">
+      <field name="name">CUENTA DE CIERRES</field>
+      <field name="code_prefix">6</field>
+    </record>
+    <record id="61" model="account.group">
+      <field name="name">CUENTA LIQUIDADORA DE RESULTADOS</field>
+      <field name="code_prefix">61</field>
+      <field name="parent_id" ref="6"/>
+    </record>
+  </data>
+</odoo>

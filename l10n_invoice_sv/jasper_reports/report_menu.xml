@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<odoo>
+    <!-- Default Report for FCF -->
+    <record id="jasper_fcf_report_demo" model="ir.actions.report">
+        <field name="name">FCF Report</field>
+        <field name="model">account.invoice</field>
+        <field name="string">Jasper FCF Report</field>
+        <field name="report_type">jasper</field>
+        <field name="file">l10n_invoice_sv/jasper_reports/fcf.jrxml</field>
+        <field name="attachment_use">False</field>
+        <field name="report_name">Jasper FCF Report</field>
+        <field name="jasper_report">True</field>
+        <field name="jasper_model_id" ref="account.model_account_invoice"/>
+        <field name="binding_model_id" ref="account.model_account_invoice"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="jasper_fcf_report_id" model="ir.actions.report.xml.file">
+        <field name="default">True</field>
+        <field name="filename">fcf.jrxml</field>
+        <field name="report_id" ref="l10n_invoice_sv.jasper_fcf_report_demo"/>
+        <field name="file" type="base64" file="l10n_invoice_sv/jasper_reports/fcf.jrxml"/>
+    </record>
+
+    <!-- Default Report for CCF -->
+    <record id="jasper_ccf_report_demo" model="ir.actions.report">
+        <field name="name">CCF Report</field>
+        <field name="model">account.invoice</field>
+        <field name="string">Jasper CCF Report</field>
+        <field name="report_type">jasper</field>
+        <field name="file">l10n_invoice_sv/jasper_reports/ccf.jrxml</field>
+        <field name="attachment_use">False</field>
+        <field name="report_name">Jasper CCF Report</field>
+        <field name="jasper_report">True</field>
+        <field name="jasper_model_id" ref="account.model_account_invoice"/>
+        <field name="binding_model_id" ref="account.model_account_invoice"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="jasper_ccf_report_id" model="ir.actions.report.xml.file">
+        <field name="default">True</field>
+        <field name="filename">ccf.jrxml</field>
+        <field name="report_id" ref="l10n_invoice_sv.jasper_ccf_report_demo"/>
+        <field name="file" type="base64" file="l10n_invoice_sv/jasper_reports/ccf.jrxml"/>
+    </record>
+
+    <!-- Default Report for TCK -->
+    <record id="jasper_tck_report_demo" model="ir.actions.report">
+        <field name="name">TCK Report</field>
+        <field name="model">account.invoice</field>
+        <field name="string">Jasper TCK Report</field>
+        <field name="report_type">jasper</field>
+        <field name="file">l10n_invoice_sv/jasper_reports/tck.jrxml</field>
+        <field name="attachment_use">False</field>
+        <field name="report_name">Jasper TCK Report</field>
+        <field name="jasper_report">True</field>
+        <field name="jasper_model_id" ref="account.model_account_invoice"/>
+        <field name="binding_model_id" ref="account.model_account_invoice"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="jasper_tck_report_id" model="ir.actions.report.xml.file">
+        <field name="default">True</field>
+        <field name="filename">tck.jrxml</field>
+        <field name="report_id" ref="l10n_invoice_sv.jasper_tck_report_demo"/>
+        <field name="file" type="base64" file="l10n_invoice_sv/jasper_reports/tck.jrxml"/>
+    </record>
+
+    <!-- Default report for EXP -->
+    <record id="jasper_exp_report_demo" model="ir.actions.report">
+        <field name="name">EXP Report</field>
+        <field name="model">account.invoice</field>
+        <field name="string">Jasper EXP Report</field>
+        <field name="report_type">jasper</field>
+        <field name="file">l10n_invoice_sv/jasper_reports/exp.jrxml</field>
+        <field name="attachment_use">False</field>
+        <field name="report_name">Jasper EXP Report</field>
+        <field name="jasper_report">True</field>
+        <field name="jasper_model_id" ref="account.model_account_invoice"/>
+        <field name="binding_model_id" ref="account.model_account_invoice"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="jasper_exp_report_id" model="ir.actions.report.xml.file">
+        <field name="default">True</field>
+        <field name="filename">exp.jrxml</field>
+        <field name="report_id" ref="l10n_invoice_sv.jasper_exp_report_demo"/>
+        <field name="file" type="base64" file="l10n_invoice_sv/jasper_reports/exp.jrxml"/>
+    </record>
+</odoo>
