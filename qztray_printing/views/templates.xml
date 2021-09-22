@@ -1,0 +1,23 @@
+<odoo>
+    <template id="assets_qz" inherit_id="web.assets_common">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/qztray_printing/static/lib/jsrsasign-all-min.js" />
+            <script type="text/javascript" src="/qztray_printing/static/lib/rsvp-3.1.0.min.js" />
+            <script type="text/javascript" src="/qztray_printing/static/lib/sha-256.min.js" />
+            <script type="text/javascript" src="/qztray_printing/static/lib/qz-tray.js" />
+            <script type="text/javascript" src="/qztray_printing/static/lib/sign.js" />
+        </xpath>
+    </template>
+    <template id="qztray_printing_assets_on_pos" name="qztray printing assets on pos" inherit_id="point_of_sale.assets">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/qztray_printing/static/src/js/multiprint.js"/>
+            <script type="text/javascript" src="/qztray_printing/static/src/js/jasper_action_manager.js" />
+        </xpath>
+    </template>
+    <template id="assets_backend" name="qztray_printing assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/qztray_printing/static/src/js/qweb_action_manager.js" />
+            <script type="text/javascript" src="/qztray_printing/static/src/js/jasper_action_manager.js" />
+        </xpath>
+    </template>
+</odoo>

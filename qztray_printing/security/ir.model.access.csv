@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_qztray_printing_qztray_printing,qztray_printing.qztray_printing,model_qztray_printing_qztray_printing,,1,0,0,0

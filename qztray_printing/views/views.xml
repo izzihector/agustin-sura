@@ -1,0 +1,44 @@
+<odoo>
+  <data>
+    <record id="act_report_jasper_qztrat_form" model="ir.ui.view">
+        <field name="name">report.jasper.qztray.form</field>
+        <field name="model">ir.actions.report</field>
+        <field name="inherit_id" ref="jasper_reports.act_report_jasper_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//group[last()]" position="after">
+                <group colspan="4">
+                  <separator string="Ajustes de impresion" />
+                  <field name="jasper_report_action" />
+                  <field name="jasper_report_printer_name" />
+                  <field name="jasper_report_height" />
+                  <field name="jasper_report_width" />
+                  <field name="jasper_report_margin_top" />
+                  <field name="jasper_report_margin_bottom" />
+                  <field name="jasper_report_margin_left" />
+                  <field name="jasper_report_margin_right" />
+                </group>
+            </xpath>
+        </field>
+    </record>
+    <record id="act_report_qweb_qztrat_form" model="ir.ui.view">
+        <field name="name">report.qweb.qztray.form</field>
+        <field name="model">ir.actions.report</field>
+        <field name="inherit_id" ref="base.act_report_xml_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="after">
+                <group colspan="4">
+                  <separator string="Ajustes de impresion" />
+                  <field name="jasper_report_action" />
+                  <field name="jasper_report_printer_name" />
+                  <field name="jasper_report_height" />
+                  <field name="jasper_report_width" />
+                  <field name="jasper_report_margin_top" />
+                  <field name="jasper_report_margin_bottom" />
+                  <field name="jasper_report_margin_left" />
+                  <field name="jasper_report_margin_right" />
+                </group>
+            </xpath>
+        </field>
+    </record>
+  </data>
+</odoo>
