@@ -16,3 +16,4 @@ from . import pos_category
 from . import pos_call_log
 from . import pos_combo_item
 from . import pos_order_line_lot
+from . import pos_order_return

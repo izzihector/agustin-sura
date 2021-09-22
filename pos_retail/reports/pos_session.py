@@ -18,6 +18,96 @@ class pos_session(models.Model):
         if self and self.config_id:
             return self.config_id.name
 
+    #ticket ccf y fcf numero inicial y final en reporte z
+
+    def _get_start_ticket(self):
+        orders=self.env['pos.order'].search([('session_id', '=', self.id)])
+        invoice =orders.mapped('invoice_id')
+        list=[]
+        for x in invoice:
+            if x.journal_id.type_report == "tck":
+                list.append(int(x.number[3:]))
+        list.sort()
+        if list:
+            return list[0]
+        return ''
+    
+    def _get_start_fcf(self):
+        orders=self.env['pos.order'].search([('session_id', '=', self.id)])
+        invoice =orders.mapped('invoice_id')
+        list=[]
+        for x in invoice:
+            if x.journal_id.type_report == "fcf":
+                list.append(int(x.number[3:]))
+        list.sort()
+        if list:
+            return list[0]
+        return ''
+
+    def _get_start_ccf(self):
+        orders=self.env['pos.order'].search([('session_id', '=', self.id)])
+        invoice =orders.mapped('invoice_id')
+        list=[]
+        for x in invoice:
+            if x.journal_id.type_report == "ccf":
+                list.append(int(x.number[3:]))
+        list.sort()
+        if list:
+            return list[0]
+        return ''
+
+    def _get_end_ticket(self):
+        orders=self.env['pos.order'].search([('session_id', '=', self.id)])
+        invoice =orders.mapped('invoice_id')
+        list=[]
+        for x in invoice:
+            if x.journal_id.type_report == "tck":
+                list.append(int(x.number[3:]))
+        list.sort()
+        if list:
+            return list[-1]
+        return ''
+
+    def _get_end_fcf(self):
+        orders=self.env['pos.order'].search([('session_id', '=', self.id)])
+        invoice =orders.mapped('invoice_id')
+        list=[]
+        for x in invoice:
+            if x.journal_id.type_report == "fcf":
+                list.append(int(x.number[3:]))
+        list.sort()
+        if list:
+            return list[-1]
+        return ''
+
+    def _get_end_ccf(self):
+        orders=self.env['pos.order'].search([('session_id', '=', self.id)])
+        invoice =orders.mapped('invoice_id')
+        list=[]
+        for x in invoice:
+            if x.journal_id.type_report == "ccf":
+                list.append(int(x.number[3:]))
+        list.sort()
+        if list:
+            return list[-1]
+        return ''
+
+    def _outboun_pos(self):
+        for sesions in self:
+            if sesions.start_at and sesions.stop_at:
+                out_obj=self.env['cash.box.out'].search(
+                    [
+                        ('create_date','>=', sesions.start_at),
+                        ('create_date', '<=', sesions.stop_at),
+                    ])
+                summary=sum(outbound.amount for outbound in out_obj)
+        if summary:
+            return summary
+        return 0.00
+
+        
+    
+
     @api.multi
     def get_inventory_details(self):
         product_category = self.env['product.category'].search([])

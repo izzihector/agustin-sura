@@ -814,10 +814,10 @@ odoo.define('pos_retail.order', function (require) {
                     product['taxes_id'].push(fpos_taxes[i].tax_dest_id[0]);
                 }
             }else{
-            //    product['taxes_id'] = [1];
+                product['taxes_id'] = [1];
             }
             var res = _super_Order.add_product.apply(this, arguments);
-	    var selected_orderline = this.selected_orderline;
+            var selected_orderline = this.selected_orderline;
             var combo_items = [];
             for (var i = 0; i < this.pos.combo_items.length; i++) {
                 var combo_item = this.pos.combo_items[i];

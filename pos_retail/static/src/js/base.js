@@ -75,18 +75,8 @@ odoo.define('pos_retail.base', function (require) {
                                 invoiced.resolve();
                                 done.resolve();
                             });
-                        }else if(invoice.journal_id[1] == "Factura de Exportacion (USD)" ||
-                        invoice.journal_id[1] == "Factura de Exportacion (SVC)"){
-                        self.chrome.do_action('l10n_invoice_sv.jasper_exp_report_demo', {
-                            additional_context: {
-                                active_ids: [invoice.id],
-                            }
-                        }).done(function () {
-                            invoiced.resolve();
-                            done.resolve();
-                        });
-                            
-                        }else if(invoice.journal_id[1] == "Ticket (USD)" || invoice.journal_id[1] == "Ticket (SVC)"){
+                        }
+                        else if(invoice.journal_id[1] == "Ticket (USD)" || invoice.journal_id[1] == "Ticket (SVC)"){
                             self.chrome.do_action('l10n_invoice_sv.jasper_tck_report_demo', {
                                 additional_context: {
                                     active_ids: [invoice.id],

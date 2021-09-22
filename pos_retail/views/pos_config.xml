@@ -76,6 +76,7 @@
                                     <field name="validate_price_change"/>
                                     <field name="validate_discount_change"/>
                                     <field name="validate_change_minus"/>
+                                    <field name="validate_remove_order_line"/>
                                     <field name="validate_by_user_id"
                                            attrs="{'required': ['|', '|', '|', '|', '|', '|', ('validate_payment', '=', True), ('validate_remove_order', '=', True), ('validate_close_session', '=', True), ('validate_quantity_change', '=', True), ('validate_price_change', '=', True), ('validate_discount_change', '=', True) , ('validate_change_minus', '=', True)]}"/>
                                     <field name="apply_validate_return_mode"/>

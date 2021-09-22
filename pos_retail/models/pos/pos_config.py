@@ -166,7 +166,8 @@ class pos_config(models.Model):
     validate_by_user_id = fields.Many2one('res.users', 'Validate by admin')
     apply_validate_return_mode = fields.Boolean('Validate return mode',
                                                 help='If checked, only applied validate when return order', default=1)
-
+    validate_remove_order_line = fields.Boolean('Validate remove order line')
+    
     print_user_card = fields.Boolean('Print user card')
 
     product_operation = fields.Boolean('Product Operation', default=0,

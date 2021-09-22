@@ -9,6 +9,7 @@ class account_invoice(models.Model):
     _inherit = 'account.invoice'
 
     pos_order_id = fields.Many2one('pos.order', 'Pos Order')
+    pos_order_return_id = fields.Many2one('pos.order.return', 'Pos Order Return', required=False)
     pos_config_id = fields.Many2one('pos.config', related='pos_order_id.session_id.config_id', string="Point of Sale")
 
     @api.model

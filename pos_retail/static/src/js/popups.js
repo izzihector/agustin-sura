@@ -1286,7 +1286,6 @@ odoo.define('pos_retail.popups', function (require) {
             }));
             this.$('.tax-item').click(function () {
                 var tax_id = parseInt($(this).data('id'));
-		    console.log(self.pos.taxes_by_id);
                 var tax = self.pos.taxes_by_id[tax_id];
                 if (tax) {
                     if ($(this).closest('.left_button').hasClass("item-selected") == true) {

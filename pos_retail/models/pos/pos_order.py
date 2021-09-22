@@ -394,6 +394,20 @@ class pos_order(models.Model):
                 threaded_synchronization = threading.Thread(target=self.auto_auto_register_payment_invoice, args=(
                     order.id, []))
                 threaded_synchronization.start()
+        for i in range(0, len(pos_orders)):
+            pos_order_data = pos_orders[i]
+            order_data = orders[i]['data']
+            if order_data['to_invoice']:
+                amount_return = order_data['amount_paid'] - order_data['amount_total']
+                self.env['pos.order.return'].create({
+                    'invoice_id': pos_order_data.invoice_id.id,
+                    'amount_return': amount_return,
+                    'amount_paid': order_data['amount_paid'],
+                    'amount_total': order_data['amount_total']
+                })
+                pos_order_return = self.env['pos.order.return'].search([('invoice_id','=',pos_order_data.invoice_id.id)])
+                invoice = self.env['account.invoice'].browse(pos_order_data.invoice_id.id)
+                invoice.pos_order_return_id = pos_order_return[0]
         return order_ids
 
     @api.multi

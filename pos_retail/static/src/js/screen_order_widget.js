@@ -657,10 +657,37 @@ odoo.define('pos_retail.screen_order_widget', function (require) {
             var el_remove_line = el_node.querySelector('.remove_line');
             if (el_remove_line) {
                 el_remove_line.addEventListener('click', (function () {
-                    var order = self.pos.get_order();
-                    var selected_orderline = order.selected_orderline;
-                    if (order && selected_orderline) {
-                        return order.remove_orderline(selected_orderline);
+                    const remove_order_line = function remove_order_line() {
+                        var order = self.pos.get_order();
+                        var selected_orderline = order.selected_orderline;
+                        if (order && selected_orderline) {
+                            return order.remove_orderline(selected_orderline);
+                        }
+                    }
+                    if( this.pos.config.validate_remove_order_line ) {
+                        return this.pos.gui.show_popup('ask_password', {
+                            title: 'Pos pass pin ?',
+                            body: 'Please use pos security pin for unlock',
+                            confirm: function (value) {
+                                var pin;
+                                if (this.pos.config.validate_by_user_id) {
+                                    var user_validate = this.pos.user_by_id[this.pos.config.validate_by_user_id[0]];
+                                    pin = user_validate['pos_security_pin']
+                                } else {
+                                    pin = this.pos.user.pos_security_pin
+                                }
+                                if (value != pin) {
+                                    return this.pos.gui.show_popup('dialog', {
+                                        title: 'Wrong',
+                                        body: 'Pos security pin not correct'
+                                    })
+                                } else {
+                                    return remove_order_line();
+                                }
+                            }
+                        });
+                    } else {
+                        return remove_order_line();
                     }
                 }.bind(this)));
             }
