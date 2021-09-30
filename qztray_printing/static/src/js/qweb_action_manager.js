@@ -21,7 +21,6 @@ odoo.define('qztray_printing.print', function (require) {
                   args: [action_val.report_name]
               }).then(function (print_action) {
                   if (print_action && print_action.action === 'qztray') {
-                    console.log(print_action);
                       framework.unblockUI();
                       rpc.query({
                           model: 'ir.actions.report',
