@@ -1,0 +1,128 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* invoice_summary
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0-20200826\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-01-19 19:47+0000\n"
+"PO-Revision-Date: 2021-01-19 19:47+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: invoice_summary
+#: model:ir.model,name:invoice_summary.model_account_invoice_summary
+msgid "Account Invoice Summary"
+msgstr "Cierre de Caja"
+
+#. module: invoice_summary
+#: model:ir.ui.view,arch_db:invoice_summary.summary
+msgid "Amount"
+msgstr "Importe"
+
+#. module: invoice_summary
+#: model:ir.ui.view,arch_db:invoice_summary.summary
+msgid "Amount Total"
+msgstr "Monto total"
+
+#. module: invoice_summary
+#: model:ir.ui.view,arch_db:invoice_summary.account_invoice_summary_view_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: invoice_summary
+#: model:ir.model.fields,field_description:invoice_summary.field_account_invoice_summary_create_uid
+msgid "Created by"
+msgstr "Creado por:"
+
+#. module: invoice_summary
+#: model:ir.model.fields,field_description:invoice_summary.field_account_invoice_summary_create_date
+msgid "Created on"
+msgstr "Creado"
+
+#. module: invoice_summary
+#: model:ir.model.fields,field_description:invoice_summary.field_account_invoice_summary_display_name
+msgid "Display Name"
+msgstr "Nombre a Mostrar"
+
+#. module: invoice_summary
+#: model:ir.model.fields,field_description:invoice_summary.field_account_invoice_summary_end
+msgid "End"
+msgstr "Fin"
+
+#. module: invoice_summary
+#: model:ir.ui.view,arch_db:invoice_summary.account_invoice_summary_view_form
+msgid "Generate"
+msgstr "Generar"
+
+#. module: invoice_summary
+#: model:ir.model.fields,field_description:invoice_summary.field_account_invoice_summary_id
+msgid "ID"
+msgstr "ID"
+
+#. module: invoice_summary
+#: model:ir.ui.view,arch_db:invoice_summary.summary
+msgid "Invoice"
+msgstr "Factura"
+
+#. module: invoice_summary
+#: model:ir.actions.act_window,name:invoice_summary.account_invoice_summary_action
+#: model:ir.actions.report,name:invoice_summary.invoice_summary_report
+#: model:ir.ui.menu,name:invoice_summary.account_invoice_summary_menu
+msgid "Invoice Summary"
+msgstr "Cierre de Caja"
+
+#. module: invoice_summary
+#: model:ir.model.fields,field_description:invoice_summary.field_account_invoice_summary___last_update
+msgid "Last Modified on"
+msgstr "Última Modificación el"
+
+#. module: invoice_summary
+#: model:ir.model.fields,field_description:invoice_summary.field_account_invoice_summary_write_uid
+msgid "Last Updated by"
+msgstr "Actualizado por"
+
+#. module: invoice_summary
+#: model:ir.model.fields,field_description:invoice_summary.field_account_invoice_summary_write_date
+msgid "Last Updated on"
+msgstr "Actualizado"
+
+#. module: invoice_summary
+#: model:ir.ui.view,arch_db:invoice_summary.summary
+msgid "Method"
+msgstr "Método"
+
+#. module: invoice_summary
+#: model:ir.ui.view,arch_db:invoice_summary.summary
+msgid "Payment Terms"
+msgstr "Plazos de pago"
+
+#. module: invoice_summary
+#: model:ir.model.fields,field_description:invoice_summary.field_account_invoice_summary_printer_id
+msgid "Printer"
+msgstr "Punto de Emisión"
+
+#. module: invoice_summary
+#: model:ir.model.fields,field_description:invoice_summary.field_account_invoice_summary_start
+msgid "Start"
+msgstr "Inicio"
+
+#. module: invoice_summary
+#: model:ir.ui.view,arch_db:invoice_summary.summary
+msgid "State"
+msgstr "Estado"
+
+#. module: invoice_summary
+#: model:ir.ui.view,arch_db:invoice_summary.summary
+msgid "Summary"
+msgstr "Resumen"
+
+#. module: invoice_summary
+#: model:ir.ui.view,arch_db:invoice_summary.account_invoice_summary_view_form
+msgid "or"
+msgstr "o"

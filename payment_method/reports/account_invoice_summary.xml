@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <report
+        id="invoice_summary_report"
+        model="account.invoice.summary"
+        string="Resumen de pagos"
+        report_type="qweb-pdf"
+        name="payment_method.summary"
+        file="payment_method.summary"
+        print_report_name="'Resumen de pagos- {}-{}'.format(object.start, object.end)"
+    />
+
+    <template id="summary">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-set="lang" t-value="o.env.user.lang"/>
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2>
+                            Summary
+                            <span t-field="o.start"/>
+                            -
+                            <span t-field="o.end"/>
+                        </h2>
+                        <table class="table table-sm">
+                            <tbody>
+                                <tr>
+                                    <th>Factura</th>
+                                    <th>Cliente</th>
+                                    <th>Monto</th>
+                                    <th>Tipo de pago</th>
+                                    <th>Estado</th>
+                                </tr>
+                                <tr t-foreach="o.get_invoices()" t-as="invoice">
+                                    <td>
+                                        <span t-field="invoice.communication"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="invoice.partner_id"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="invoice.amount"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="invoice.journal_id"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="invoice.state"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="col-6">
+                            <tbody>
+                                <tr>
+                                    <th>Total</th>
+                                </tr>
+                                <tr t-set = "inv" t-value="o.get_invoices()"/>
+                                <td>
+                                    <t t-set="test1" t-value="sum(x.amount for x in inv)"/>
+                                        <span t-esc="test1" t-options="{'widget': 'monetary', 'display_currency': o.env.user.company_id.currency_id}"/>
+                                    
+                                </td>
+                                
+                                
+                            </tbody>
+                        </table>
+                        <h3>Resumen de pagos</h3>
+                        <table class="table table-sm">
+                            <tbody>
+                                <tr>
+                                    <th>Tipo de pago</th>
+                                    <th>Monto</th>
+                                </tr>
+                                <tr t-foreach="o.get_summary()" t-as="method">
+                                    <td>
+                                        <span t-field="method[0].name"/>
+                                    </td>
+                                    <td>
+                                        <span t-esc="method[1]" t-options="{'widget': 'monetary', 'display_currency': o.env.user.company_id.currency_id}"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>
