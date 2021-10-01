@@ -33,32 +33,19 @@ class AccountInvoiceSummary(models.TransientModel):
 
         return invoices
 
-    def get_payments(self):
-        invoices = self.env["account.invoice"].search(
-            [
-                ("type", "=", "out_invoice"),
-                ("state", "in", ("open", "paid")),
-                ("date_invoice", ">=", self.start),
-                ("date_invoice", "<=", self.end),
-                ("pos_order_id", "=", False),
-            ]
-        )
-
-
-        return invoices
 
     def get_summary(self):
-        invoices = self.get_payments()
-        payments = invoices.mapped("payment_ids")
-        payment_methods = payments.mapped("journal_id")
+        invoices = self.get_invoices()
+        payments = invoices.mapped("journal_id")
+        #payment_methods = payments.mapped("journal_id")
         summary = [
             (
                 method,
                 sum(
                     payment.amount
-                    for payment in payments.filtered(lambda p: p.journal_id == method)
+                    for payment in invoices.filtered(lambda p: p.journal_id == method)
                 ),
             )
-            for method in payment_methods
+            for method in payments
         ]
         return summary
